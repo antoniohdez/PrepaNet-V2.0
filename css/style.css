@@ -1,0 +1,26 @@
+@charset "UTF-8";
+body{
+	background: #eaedf2;
+	background: #eaedf2 url(../img/noisebg.png);
+}
+
+.CScontenedor{
+	margin-top:70px;	
+}
+
+.CSinputSearch{
+	border-top-right-radius:0px;
+	border-bottom-right-radius:0px;
+	width:80%;
+	float:left;	
+}
+
+.CSbuttonSearch{
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+	width:20%	
+}
+
+textarea{
+	resize:none;	
+}
