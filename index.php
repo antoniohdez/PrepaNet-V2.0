@@ -13,7 +13,6 @@
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/form.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
@@ -31,10 +30,10 @@
 					<div class="centerText">
 						<h3>Bienvenido al sistema de inscrpciones de PrepaNet</h3>
 					</div>
-					<div class="">
+					<div>
 						Este sistema de inscripciones te permitirá llevar a cabo el proceso de unscripción de materias para tu próximo semestre de una forma fácil y ...
 						<br/>
-						Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.
+						Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.<br><br>
 					</div>
 					<div class="centerText">
 						<button class="btn btn-primary signIn" type="submit">Comenzar inscripción</button>

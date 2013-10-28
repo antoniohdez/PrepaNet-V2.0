@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+div.contenedorMaterias{
+	margin: 1em;
+	padding: 1em;
+	background: #f0f0f0;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	/*height: 420px;*/
+}
+
+div.title{
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 1em;
+}
+
+div.materia{
+	margin-top: 5px;
+	background: #FFF;
+	padding: .5em;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	overflow: scroll;
+	display: table;
+	width: 100%;
+}
+
+div.listaMaterias{
+	height: 350px;
+	padding-bottom: 1em;
+	overflow: scroll;
+}
+
+span.textAlign{
+	display: table-cell;
+	vertical-align: middle;
+}
+button.button{
+	float:right;
+}
