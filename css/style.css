@@ -1,26 +1,31 @@
 @charset "UTF-8";
+
 body{
 	background: #eaedf2;
 	background: #eaedf2 url(../img/noisebg.png);
 }
 
-.CScontenedor{
-	margin-top:70px;	
+/*
+div.background{
+	background: -webkit-linear-gradient(#02679d, #194e76);
+	background: -moz-linear-gradient(#02679d, #194e76);
+	background: -o-linear-gradient(#02679d, #194e76);
+	background: linear-gradient(#02679d, #194e76);
+}
+*/
+
+div.content{
+	background: #FFF;
+	border: 1px solid #AAA;
+	border-radius: 5px;
+	padding: 1em;
+
 }
 
-.CSinputSearch{
-	border-top-right-radius:0px;
-	border-bottom-right-radius:0px;
-	width:80%;
-	float:left;	
+div.CScontenedor{
+	margin-top:120px;
 }
 
-.CSbuttonSearch{
-	border-top-left-radius:0px;
-	border-bottom-left-radius:0px;
-	width:20%	
-}
-
-textarea{
-	resize:none;	
+div.centerText{
+	text-align: center;
 }

@@ -26,20 +26,20 @@
 	?>
 	<div class="container CScontenedor">
 		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
-				<div class="content">
-					<div class="centerText">
-						<h3>Bienvenido al sistema de inscrpciones de PrepaNet</h3>
-					</div>
-					<div class="">
-						Este sistema de inscripciones te permitirá llevar a cabo el proceso de unscripción de materias para tu próximo semestre de una forma fácil y ...
-						<br/>
-						Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.
-					</div>
-					<div class="centerText">
-						<button class="btn btn-primary signIn" type="submit">Comenzar inscripción</button>
-					</div>
-				</div>
+			<div class="col-md-offset-4 col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading centerText">
+			        	Sistema de inscripciones
+			        </div>
+					<form class="form-signin">
+			        	<input type="text" class="form-control firstInput" placeholder="Matrícula" autofocus>
+			        	<input type="password" class="form-control lastInput" placeholder="Contraseña">
+			        	<button class="btn btn-lg btn-primary btn-block signIn" type="submit">Iniciar sesión</button>
+			    	</form>
+			    	<div>
+			    		<a class="linkPassword" href="#" onClick="">Recuperar contraseña</a>
+			    	</div>
+		    	</div>
     		</div>
     	</div>
 	</div>

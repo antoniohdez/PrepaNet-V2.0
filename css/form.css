@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+form.form-signin{
+	padding: 2em;
+}
+
+input.firstInput{
+	height: auto;
+	padding: 10px;
+	margin-bottom: 0px;
+	border-radius: 5px 5px 0 0;
+}
+
+input.lastInput{
+	height: auto;
+	padding: 10px;
+	border-radius: 0 0 5px 5px;
+}
+
+button.signIn{
+	margin-top: 1em;
+}
+
+a.linkPassword{
+	text-decoration:none;
+	color:#000;
+	font-size:12px;
+	float:right;
+	margin-top:5px;
+}
