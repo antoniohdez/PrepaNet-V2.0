@@ -163,38 +163,6 @@
 		   $temp.remove();
 		});
     });
-/*
-	$(".btn-danger").click(function(){
-    	var width = $(this).parent().parent().parent().width();
-    	var $old = $(this).parent().parent().parent();
-    	$(this).removeClass("btn-danger").addClass("btn-success");
-    	$(this).html("Inscribir");
-
-		//First we copy the arrow to the new table cell and get the offset to the document
-		var $new = $old.clone().appendTo('#disponibles');
-		var newOffset = $new.offset();
-		//Get the old position relative to document
-		var oldOffset = $old.offset();
-		//we also clone old to the document for the animation
-		var $temp = $old.clone().appendTo('body');
-		//hide new and old and move $temp to position
-		//also big z-index, make sure to edit this to something that works with the page
-		$temp
-		  .css('position', 'absolute')
-		  .css('left', oldOffset.left)
-		  .css('top', oldOffset.top)
-		  .css('width', width)
-		  .css('zIndex', 100);
-		$new.hide();
-		$old.hide();
-		//animate the $temp to the position of the new img
-		$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 'slow', function(){
-		   //callback function, we remove $old and $temp and show $new
-		   $new.show();
-		   $old.remove();
-		   $temp.remove();
-		});
-    });*/
 	    
     </script> 
 </body>
