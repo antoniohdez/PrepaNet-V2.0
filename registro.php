@@ -1,5 +1,6 @@
 <?php
 	include "DOMElements/view.php";
+	validarSession("student");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,7 +31,7 @@
 					<div class="centerText">
 						<h3>Registro administrativo</h3>
 					</div>
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action="materias.php" method="get">
 					  	<div class="form-group">
 					    	<label for="name" class="col-md-3 control-label">Nombre:</label>
 					    	<div class="col-md-9">
@@ -46,13 +47,13 @@
 						<div class="form-group">
 						    <label for="phone" class="col-md-3 control-label">Teléfono:</label>
 						    <div class="col-md-9">
-						    	<input type="text" class="form-control" id="phone" placeholder="(33) 4455-66-77">
+						    	<input type="text" name="phone" class="form-control" id="phone" placeholder="(33) 4455-66-77">
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="email" class="col-md-3 control-label">Correo electrónico:</label>
 						    <div class="col-md-9">
-						    	<input type="text" class="form-control" id="email" placeholder="usuario@ejemplo.com">
+						    	<input type="text" name="email" class="form-control" id="email" placeholder="usuario@ejemplo.com">
 						    </div>
 						</div>
 						<div class="form-group">
@@ -70,7 +71,7 @@
 						<div class="form-group">
 						    <label for="materias" class="col-md-3 control-label">Materias a inscribir:</label>
 						    <div class="col-md-9">
-						    	<select class="form-control">
+						    	<select class="form-control" name="num">
 									<option>2</option>
 									<option>3</option>
 									<option>4</option>
@@ -82,7 +83,7 @@
 						<div class="form-group">
 						    <label for="incubadora" class="col-md-3 control-label">Incubadora:</label>
 						    <div class="col-md-9">
-						    	<select class="form-control">
+						    	<select class="form-control" name="incubadora">
 									<option>Incubadora Social Laureles</option>
 									<option>Incubadora Social Sauz</option>
 									<option>Incubadora Social Jocotan</option>

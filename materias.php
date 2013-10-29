@@ -1,5 +1,6 @@
 <?php
 	include "DOMElements/view.php";
+	validarSession("student");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -119,51 +120,54 @@
 	</div>
 
 	
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-    $("button").click(function(){
-    	var width = $(this).parent().parent().parent().width();
-    	var $old = $(this).parent().parent().parent();
-    	if($(this).parent().parent().parent().parent().attr('id') === "disponibles"){
-	    	$(this).removeClass("btn-success").addClass("btn-danger");
-	    	$(this).html("Eliminar");
-			//First we copy the arrow to the new table cell and get the offset to the document
-			var $new = $old.clone(true).appendTo('#inscritas');
-		}else{
-			$(this).removeClass("btn-danger").addClass("btn-success");
-	    	$(this).html("Inscribir");
-			//First we copy the arrow to the new table cell and get the offset to the document
-			var $new = $old.clone(true).appendTo('#disponibles');
-		}
-		//addthis.button(this);
-		var newOffset = $new.offset();
-		//Get the old position relative to document
-		var oldOffset = $old.offset();
-		//we also clone old to the document for the animation
-		var $temp = $old.clone().appendTo('body');
-		//hide new and old and move $temp to position
-		//also big z-index, make sure to edit this to something that works with the page
-		$temp
-		  .css('position', 'absolute')
-		  .css('left', oldOffset.left)
-		  .css('top', oldOffset.top)
-		  .css('width', width)
-		  .css('zIndex', 100);
-		$new.hide();
-		$old.hide();
-		//animate the $temp to the position of the new img
-		$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 'slow', function(){
-		   //callback function, we remove $old and $temp and show $new
-		   $new.show();
-		   $old.remove();
-		   $temp.remove();
-		});
-    });
-	    
+    <script>
+	//Script para hacer control de las materias seleccionadas para inscripción
+	$(document).ready(function(){
+		$("button").click(function(){
+			//A partir del boton donde se dió click se obtiene el elemento padre que se va a mover.
+	    	var $old = $(this).parent().parent().parent();
+	    	if($old.parent().attr('id') === "disponibles" || $old.parent().attr('id') === "inscritas"){
+		    	var width = $old.width();
+		    	//var $old = $(this).parent().parent().parent();
+		    	if($old.parent().attr('id') === "disponibles"){
+			    	$(this).removeClass("btn-success").addClass("btn-danger");
+			    	$(this).html("Eliminar");
+					//First we copy the arrow to the new table cell and get the offset to the document
+					var $new = $old.clone(true).appendTo('#inscritas');
+				}else{
+					$(this).removeClass("btn-danger").addClass("btn-success");
+			    	$(this).html("Inscribir");
+					//First we copy the arrow to the new table cell and get the offset to the document
+					var $new = $old.clone(true).appendTo('#disponibles');
+				}
+				//addthis.button(this);
+				var newOffset = $new.offset();
+				//Get the old position relative to document
+				var oldOffset = $old.offset();
+				//we also clone old to the document for the animation
+				var $temp = $old.clone().appendTo('body');
+				//hide new and old and move $temp to position
+				//also big z-index, make sure to edit this to something that works with the page
+				$temp
+				  .css('position', 'absolute')
+				  .css('left', oldOffset.left)
+				  .css('top', oldOffset.top)
+				  .css('width', width)
+				  .css('zIndex', 100);
+				$new.hide();
+				$old.hide();
+				//animate the $temp to the position of the new img
+				$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 'slow', function(){
+				   //callback function, we remove $old and $temp and show $new
+				   $new.show();
+				   $old.remove();
+				   $temp.remove();
+				});
+			}
+	    });
+	});
     </script> 
 </body>
 </html>

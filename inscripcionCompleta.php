@@ -1,6 +1,6 @@
 <?php
 	include "DOMElements/view.php";
-	validarSession("login");
+	validarSession("student");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,6 @@
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/form.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
@@ -27,24 +26,26 @@
 	?>
 	<div class="container CScontenedor">
 		<div class="row">
-			<div class="col-md-offset-4 col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading centerText">
-			        	Sistema de inscripciones
-			        </div>
-					<form class="form-signin" action="index.php" method="post">
-			        	<input type="text" name="user" class="form-control firstInput" placeholder="Matrícula" autofocus>
-			        	<input type="password" name="password" class="form-control lastInput" placeholder="Contraseña">
-			        	<button class="btn btn-lg btn-primary btn-block signIn" type="submit">Iniciar sesión</button>
-			    	</form>
-			    	<div>
-			    		<a class="linkPassword" href="#" onClick="">Recuperar contraseña</a>
-			    	</div>
-		    	</div>
+			<div class="col-md-offset-2 col-md-8">
+				<div class="content">
+					<div class="centerText">
+						<h3>Inscripción completa</h3>
+					</div>
+					<div>
+						<p>
+							El registro de tus materias se ha realizado correctamente, hemos enviado un correo electrónico a la dirección que proporcionaste con la información de tus materias inscritas.
+						</p>
+						<p>
+							Cualquier duda puedes comunicarte a las oficinas de PrepaNet.
+						</p>
+					</div>
+					<div class="centerText">
+						<button class="btn btn-primary signIn" type="submit">Reenviar correo</button>
+					</div>
+				</div>
     		</div>
     	</div>
 	</div>
-
 	
     <!-- Bootstrap core JavaScript
     ================================================== -->

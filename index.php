@@ -1,5 +1,7 @@
 <?php
+	
 	include "DOMElements/view.php";
+	validarSession("any");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,24 +23,33 @@
 </head>
 <body>
 	<?php
-		printTopbar();
+		printTopbar();//Falta validar tipo de sesión
 	?>
 	<div class="container CScontenedor">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
+				<?php
+					printIndex();//Falta validar tipo de sesión
+				?>
+				<!--
 				<div class="content">
 					<div class="centerText">
 						<h3>Bienvenido al sistema de inscrpciones de PrepaNet</h3>
 					</div>
 					<div>
-						Este sistema de inscripciones te permitirá llevar a cabo el proceso de unscripción de materias para tu próximo semestre de una forma fácil y ...
-						<br/>
-						Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.<br><br>
+						<p>
+							Este sistema de inscripciones te permitirá llevar a cabo el proceso de unscripción de materias para tu próximo semestre de una forma fácil y ...
+						</p>
+						<p>
+							Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.
+						</p>
 					</div>
 					<div class="centerText">
 						<button class="btn btn-primary signIn" type="submit">Comenzar inscripción</button>
 					</div>
 				</div>
+				-->
+
     		</div>
     	</div>
 	</div>
