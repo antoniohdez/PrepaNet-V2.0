@@ -31,7 +31,7 @@
 					<div class="centerText">
 						<h3>Registro administrativo</h3>
 					</div>
-					<form class="form-horizontal" role="form" action="materias.php" method="get">
+					<form class="form-horizontal" role="form" action="SeleccionMaterias.php" method="get">
 					  	<div class="form-group">
 					    	<label for="name" class="col-md-3 control-label">Nombre:</label>
 					    	<div class="col-md-9">
