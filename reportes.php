@@ -15,6 +15,7 @@
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
@@ -28,7 +29,36 @@
 	<div class="container CScontenedor">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
-				
+				<div class="content">
+					<div class="centerText">
+						<h3>Generar reportes</h3>
+					</div>
+					<div class="row">
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Inscripción</div>
+							</div>
+						</div>
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Alumno</div>
+							</div>
+						</div>
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Alumnos activos</div>
+							</div>
+						</div>
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Cursadas por alumno</div>
+							</div>
+						</div>
+					</div>
+					<div class="centerText">
+
+					</div>
+				</div>
 				
     		</div>
     	</div>

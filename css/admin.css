@@ -1,0 +1,21 @@
+div.option{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: #555;
+	display: table;
+	color: #FFF;
+	background: #02679d;
+	background: -webkit-linear-gradient(#02679d, #194e76);
+	background: -moz-linear-gradient(#02679d, #194e76);
+	background: -o-linear-gradient(#02679d, #194e76);
+	background: linear-gradient(#02679d, #194e76);
+	border: 5px solid #02679d;
+}
+
+div.centradoVertical{
+	display: table-cell;
+	vertical-align: middle;
+}
