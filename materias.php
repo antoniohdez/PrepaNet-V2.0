@@ -1,6 +1,6 @@
 <?php
 	include "DOMElements/view.php";
-	validarSession("student");
+	validarSession("admin");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -142,7 +142,6 @@
     		</div>
     	</div>
 	</div>
-
 	
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

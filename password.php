@@ -1,6 +1,6 @@
 <?php
 	include "DOMElements/view.php";
-	validarSession("student");
+	validarSession("any");
 ?>
 <!DOCTYPE html>
 <html lang="es">

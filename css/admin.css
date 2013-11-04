@@ -12,11 +12,15 @@ div.option{
 	background: -moz-linear-gradient(#02679d, #194e76);
 	background: -o-linear-gradient(#02679d, #194e76);
 	background: linear-gradient(#02679d, #194e76);
-	border: 5px solid #10578d;
+	border: 3px solid #10578d;
 }
 
 div.option:hover{
 	background: #02679d;
+}
+
+div.option:active{
+	background: #194e76;
 }
 
 div.centradoVertical{

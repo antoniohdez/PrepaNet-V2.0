@@ -1,5 +1,6 @@
 <?php
 include "driver.php";
+//session_start();
 function printTopbar(){//Falta validar el tipo de sesión
 	print '
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -12,25 +13,27 @@ function printTopbar(){//Falta validar el tipo de sesión
 					</button>
 					<a class="navbar-brand" href="index.php">PrepaNet</a>
 				</div>
-				<div class="collapse navbar-collapse">
+				<div class="collapse navbar-collapse">';
 					
-	                <ul class="nav navbar-nav">
+					if($_SESSION["type"] == "admin")
+	                print '<ul class="nav navbar-nav">
 						<li class="active"><a href="reportes.php">Reportes</a></li>
 						<li><a href="alumnos.php">Alumnos</a></li>
 						<li><a href="materias.php">Materias</a></li>
-						<li><a href="admin.php">Administrar Cuentas</a></li>
-					</ul> 
-					         
-	                <ul class="nav navbar-nav navbar-right">
+						<li><a href="administrador.php">Administrar Cuentas</a></li>
+					</ul>';
+					if($_SESSION["type"] == "admin" || $_SESSION["type"] == "student")
+	                print '<ul class="nav navbar-nav navbar-right">
 	  					<li class="dropdown">
-	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Antonio <b class="caret"></b></a>
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'. $_SESSION["name"] .' <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                        	<li><a href="#">Cambiar contraseña</a></li>
+	                        	<li><a href="password.php">Cambiar contraseña</a></li>
 	                        	<li class="divider"></li>
 	                            <li><a href="logout.php">Cerrar sesión</a></li>
 	                        </ul>
 	                    </li>
-					</ul> 
+					</ul>';
+					print ' 
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
@@ -38,6 +41,7 @@ function printTopbar(){//Falta validar el tipo de sesión
 }
 
 function printIndex(){//Falta validar el tipo de sesión al imprimir el index
+	if($_SESSION["type"] == "student")
 	print '
 		<div class="content">
 					<div class="centerText">
@@ -56,6 +60,21 @@ function printIndex(){//Falta validar el tipo de sesión al imprimir el index
 					</div>
 				</div>
 	';
+	else
+	print '
+		<div class="content">
+					<div class="centerText">
+						<h3>Administrador</h3>
+					</div>
+					<div>
+						<p>
+							
+						</p>
+					</div>
+				</div>
+	';	
+
+
 }
 
 ?>

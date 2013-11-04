@@ -112,7 +112,7 @@
 						
 					</div>
 					<div class="centerText">
-						<button class="btn btn-primary signIn" type="submit">Registrar materias</button>
+						<button class="btn btn-primary signIn" onClick="window.location.href='inscripcionCompleta.php'">Registrar materias</button>
 					</div>
 				</div>
     		</div>

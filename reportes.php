@@ -1,7 +1,7 @@
 <?php
 	
 	include "DOMElements/view.php";
-	validarSession("any");
+	validarSession("admin");
 ?>
 <!DOCTYPE html>
 <html lang="es">
