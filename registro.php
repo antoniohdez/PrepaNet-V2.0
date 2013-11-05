@@ -31,6 +31,11 @@
 					<div class="centerText">
 						<h3>Registro administrativo</h3>
 					</div>
+					<?php
+						getFormRegistro();
+					?>
+					
+					<!--
 					<form class="form-horizontal" role="form" action="SeleccionMaterias.php" method="get">
 					  	<div class="form-group">
 					    	<label for="name" class="col-md-3 control-label">Nombre:</label>
@@ -98,6 +103,7 @@
 						    </div>
 						</div>
 					</form>
+					-->
 				</div>
     		</div>
     	</div>

@@ -1,16 +1,17 @@
 <?php
 	error_reporting(1);
 	session_start();
+	
 	function conectar(){
 		$con=mysqli_connect("localhost","root","","prepanet2");
 		if (mysqli_connect_errno())
 	  	{
 	  		echo "Falló la conexión a la base de datos: " . mysqli_connect_error();
 	  	}
+	  	mysqli_set_charset($con, "utf8");
 	  	return $con;
 	}
 	
-
 	function validarSession($session){
 		$con = conectar();
 		if($session === "login"){
@@ -92,6 +93,6 @@
 				}	
 			}
 		}
-		
 	}
+
 ?>
