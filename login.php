@@ -32,9 +32,26 @@
 					<div class="panel-heading centerText">
 			        	Sistema de inscripciones
 			        </div>
+			        
 					<form class="form-signin" action="index.php" method="post">
-			        	<input type="text" name="user" class="form-control firstInput" placeholder="Matrícula" autofocus>
-			        	<input type="password" name="password" class="form-control lastInput" placeholder="Contraseña">
+						<?php
+				        	if(isset($_GET["error"])){
+				        		if($_GET["error"] === "1"){
+				        			print '<div class="alert alert-danger alert-dismissable">
+					        				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					        				<strong>Error:</strong> Los datos de acceso no son correctos.
+				        				</div>';
+				        		}
+				        		else if($_GET["error"] === "2"){
+				        			print '<div class="alert alert-danger alert-dismissable">
+						        			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						        			<strong>Error:</strong> No se pudo consultar el usuario en la base de datos.
+					        			</div>';
+				        		}
+				        	}
+			        	?>
+			        	<input type="text" name="user" class="form-control firstInput" placeholder="Matrícula" autofocus required>
+			        	<input type="password" name="password" class="form-control lastInput" placeholder="Contraseña" required>
 			        	<button class="btn btn-lg btn-primary btn-block signIn" type="submit">Iniciar sesión</button>
 			    	</form>
 			    	<div>

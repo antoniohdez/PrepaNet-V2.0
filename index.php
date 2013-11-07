@@ -1,5 +1,4 @@
 <?php
-	//
 	include "DOMElements/view.php";
 	validarSession("index");
 ?>

@@ -39,18 +39,9 @@
 									<h4>Inscritas</h4>
 								</div>
 								<div id="inscritas" class="listaMaterias">
-									<div>
-										<div class="materia">
-											<span class="textAlign">Matemáticas I</span>
-											<span><button class="btn btn-danger button">Eliminar</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Química</span>
-											<span><button class="btn btn-danger button">Eliminar</button></span>
-										</div>
-									</div>
+									<!--
+									Espacio donde se visualizan las materias inscritas
+									-->
 								</div>
 							</div>
 							<div class="col-md-6" style="border-left:1px solid #CCC;">
@@ -58,6 +49,10 @@
 									<h4>Disponibles</h4>
 								</div>
 								<div id="disponibles" class="listaMaterias">
+									<?php
+										printCursables();
+									?>
+									<!--
 									<div>
 										<div class="materia">
 											<span class="textAlign">Inglés II</span>
@@ -70,42 +65,7 @@
 											<span><button class="btn btn-success button">Inscribir</button></span>
 										</div>
 									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Física I</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Ética</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Computación I</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Taller de lectura y redacción</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Biología</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Introducción a la administración</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
+								-->
 								</div>
 							</div>
 						</div>
@@ -157,9 +117,11 @@
 				  .css('width', width)
 				  .css('zIndex', 100);
 				$new.hide();
-				$old.hide();
+				//$old.hide();
+				$old.css('visibility','hidden');//Esconde el viejo elemento pero mantiene el espacio vacio hasta terminar la animación
+
 				//animate the $temp to the position of the new img
-				$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 'slow', function(){
+				$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 400, function(){
 				   //callback function, we remove $old and $temp and show $new
 				   $new.show();
 				   $old.remove();

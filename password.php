@@ -26,7 +26,7 @@
 	?>
 	<div class="container CScontenedor">
 		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
+			<div class="col-md-offset-3 col-md-6">
 				<div class="content">
 					<div class="centerText">
 						<h3>Cambio de Contraseña</h3>
