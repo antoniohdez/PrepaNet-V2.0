@@ -50,8 +50,7 @@
 							mysqli_close($link);
 						}
 						else{//El usuario no es alumno
-							if($result = mysqli_query($con,"SELECT * FROM Administrador where Nomina = '$user' 
-								AND Password = '$pass'")){
+							if($result = mysqli_query($con,"SELECT * FROM Administrador where Nomina = '$user' AND Password = '$pass'")){
 								if(mysqli_num_rows($result) == 1){
 									$row = $result->fetch_array(MYSQLI_ASSOC);
 									$_SESSION["user"] = $row["Nomina"];
@@ -120,8 +119,12 @@
 		}
 	}
 
-	function setRegistro(){
+	function setRegistro(){//$_GET
 		
+	}
+
+	function setNewPassword(){//$_POST
+
 	}
 
 ?>

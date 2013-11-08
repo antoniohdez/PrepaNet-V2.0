@@ -31,7 +31,7 @@
 					<div class="centerText">
 						<h3>Cambio de Contraseña</h3>
 					</div>
-					<form class="form-horizontal" role="form" action="SeleccionMaterias.php" method="get">
+					<form class="form-horizontal" role="form" action="setNewPassword.php" method="get">
 						<div class="form-group">
 						    <label for="contraseñaVieja" class="col-md-3 control-label">Contraseña Actual:</label>
 						    <div class="col-md-9">
