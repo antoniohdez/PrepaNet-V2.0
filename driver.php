@@ -40,8 +40,7 @@
 					*/
 					$con = conectar();
 					
-					if($result = mysqli_query($con,"SELECT * FROM Alumno where Matricula = '$user' 
-						AND Password = '$pass'")){
+					if($result = mysqli_query($con,"SELECT * FROM Alumno where Matricula = '$user' AND Password = '$pass'")){
 						if(mysqli_num_rows($result) == 1){
 							$row = $result->fetch_array(MYSQLI_ASSOC);
 							$_SESSION["user"] = $row["Matricula"];
@@ -119,6 +118,10 @@
 		if($result = mysqli_query($con, $query)){
 			return $result;
 		}
+	}
+
+	function setRegistro(){
+		
 	}
 
 ?>

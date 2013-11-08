@@ -1,6 +1,7 @@
 <?php
 	include "DOMElements/view.php";
 	validarSession("student");
+	setRegistro();
 ?>
 <!DOCTYPE html>
 <html lang="es">
