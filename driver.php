@@ -28,6 +28,7 @@
 				else{
 					$user = $_POST["user"];
 					$pass = md5($_POST["password"]);
+					
 					/*
 					$stmt = mysqli_prepare($link, "SELECT * FROM Alumno where Matricula = ? AND Password = ?");
 					mysqli_stmt_bind_param($stmt, 'ss', $_POST["user"], $pass);
@@ -120,7 +121,7 @@
 	}
 
 	function setRegistro(){//$_GET
-		
+
 	}
 
 	function setNewPassword(){//$_POST

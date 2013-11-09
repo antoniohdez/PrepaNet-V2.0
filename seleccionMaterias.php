@@ -73,7 +73,7 @@
 						
 					</div>
 					<div class="centerText">
-						<button class="btn btn-primary signIn" onClick="window.location.href='inscripcionCompleta.php'">Registrar materias</button>
+						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" onClick="window.location.href='inscripcionCompleta.php'">Registrar materias</button>
 					</div>
 				</div>
     		</div>
@@ -84,6 +84,12 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+    <?php
+    print 'var materias = '.$_GET['num'].';';
+    ?>
+    var unidades = 0;
+    $("#inscribirMaterias").attr("disabled","disabled");
+    $("#inscribirMaterias").html("Faltan " + materias + " materias");
 	//Script para hacer control de las materias seleccionadas para inscripción
 	$(document).ready(function(){
 		$("button").click(function(){
@@ -93,24 +99,57 @@
 		    	var width = $old.width();
 		    	//var $old = $(this).parent().parent().parent();
 		    	if($old.parent().attr('id') === "disponibles"){
+		    		materias--;
 			    	$(this).removeClass("btn-success").addClass("btn-danger");
 			    	$(this).html("Eliminar");
+			    	$(this).attr('id', 'inscrita');
+			    	$("#inscribirMaterias").html("Faltan " + materias + " materias");
+			    	if(materias == 0){
+						$(".btn-success").attr("disabled","disabled");
+						$("#inscribirMaterias").removeAttr("disabled");
+						$("#inscribirMaterias").html("Inscribir materias");
+					}
+					if(materias == 1){
+						$("#inscribirMaterias").html("Falta " + materias + " materia");
+					}
 					//First we copy the arrow to the new table cell and get the offset to the document
-					var $new = $old.clone(true).appendTo('#inscritas');
-				}else{
+					var $new = $old.clone(true);
+					$new.prependTo('#inscritas');
 					$(this).removeClass("btn-danger").addClass("btn-success");
 			    	$(this).html("Inscribir");
+			    	$(this).attr('id', 'disponible');
+				}else{
+					materias++;
+					if(materias > 1){
+						$(".btn-success").removeAttr("disabled");
+						$("#inscribirMaterias").attr("disabled","disabled");
+    					$("#inscribirMaterias").html("Faltan " + materias + " materias");
+					}
+					if(materias == 1){
+						$(".btn-success").removeAttr("disabled");
+						$("#inscribirMaterias").attr("disabled","disabled");
+    					$("#inscribirMaterias").html("Falta " + materias + " materia");	
+					}
+					$(this).removeClass("btn-danger").addClass("btn-success");
+			    	$(this).html("Inscribir");
+			    	$(this).attr('id', 'disponible');
 					//First we copy the arrow to the new table cell and get the offset to the document
-					var $new = $old.clone(true).appendTo('#disponibles');
+					var $new = $old.clone(true);
+					$new.prependTo('#disponibles');
+					$(this).removeClass("btn-success").addClass("btn-danger");
+			    	$(this).html("Eliminar");
+			    	$(this).attr('id', 'inscrita');
 				}
+				
 				//addthis.button(this);
-				var newOffset = $new.offset();
+				//var newOffset = $new.offset();
 				//Get the old position relative to document
-				var oldOffset = $old.offset();
+				//var oldOffset = $old.offset();
 				//we also clone old to the document for the animation
-				var $temp = $old.clone().appendTo('body');
+				//var $temp = $old.clone().appendTo('body');
 				//hide new and old and move $temp to position
 				//also big z-index, make sure to edit this to something that works with the page
+				/*
 				$temp
 				  .css('position', 'absolute')
 				  .css('left', oldOffset.left)
@@ -118,16 +157,43 @@
 				  .css('width', width)
 				  .css('zIndex', 100);
 				$new.hide();
+				*/
 				//$old.hide();
-				$old.css('visibility','hidden');//Esconde el viejo elemento pero mantiene el espacio vacio hasta terminar la animación
+				//$old.css('visibility','hidden');//Esconde el viejo elemento pero mantiene el espacio vacio hasta terminar la animación
+				var altura = $old.css("height");
+				if($old.parent().attr('id') === "disponibles"){
+					//$new.css('height', 0);
+					$new.height(0);
+					$new.animate({'height': altura}, 200, function(){
+						$old.remove();
+					});
+					$old.animate({'height': 0}, 200, function(){
+						
+					});
+
+				}
+
+				if($old.parent().attr('id') === "inscritas"){
+					//$new.css('height', 0);
+					$new.height(0);
+					$new.animate({'height': altura}, 200, function(){
+						$old.remove();
+					});
+					$old.animate({'height': 0}, 200, function(){
+						
+					});
+
+				}
 
 				//animate the $temp to the position of the new img
+				/*
 				$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 400, function(){
 				   //callback function, we remove $old and $temp and show $new
 				   $new.show();
 				   $old.remove();
 				   $temp.remove();
 				});
+				*/
 			}
 	    });
 	});

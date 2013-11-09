@@ -172,7 +172,7 @@
     			<div>
 					<div id="'.$row["Clave"].'" unidades="'.$row["Unidades"].'" class="materia" >
 						<span class="textAlign">'.$row["Nombre"]."<br><b>".$row["Cuatrimestre"]." cuatrimestre".'</b></span>
-						<span><button class="btn btn-success button">Inscribir</button></span>
+						<span><button id="disponible" class="btn btn-success button">Inscribir</button></span>
 					</div>
 				</div>
     		';

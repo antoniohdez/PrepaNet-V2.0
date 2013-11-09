@@ -35,7 +35,9 @@ div.materia{
 div.listaMaterias{
 	height: 350px;
 	padding-bottom: 1em;
-	overflow: auto;
+	overflow: -moz-scrollbars-vertical;
+    overflow: scroll;
+	/*overflow: auto;*/
 }
 
 span.textAlign{
