@@ -121,11 +121,40 @@
 	}
 
 	function setRegistro(){//$_GET
-
+		$con = conectar();
+		$telefono = $_GET["phone"];
+		$correo = $_GET["email"];
+		//$Nmaterias = $_GET["num"];
+		$incubadora = $_GET["incubadora"];
+		$query = "UPDATE  prepanet.Alumno SET Telefono = $telefono, Mail = '$correo', Incubadora = '$incubadora'  
+					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
+		if($result = mysqli_query($con, $query)){
+			return $result;
+		}
+		mysql_close($con);
 	}
 
 	function setNewPassword(){//$_POST
+		$con = conectar();
+		$password = md5($_POST['contraseñaVieja']);
+		$newPassword = $_POST["contraseña"];
+		$quer = mysqli_query($con,"SELECT Password FROM Alumno where Matricula = '".$_SESSION["user"]."';");
+		$row = $quer->fetch_array(MYSQLI_ASSOC);
+		if($row["Password"] == $password){
+			$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
+					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
+			if($result = mysqli_query($con, $query)){
+				return $result;
+				}
+		}
 
+	/*	$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
+					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
+			if($result = mysqli_query($con, $query)){
+				return $result;
+				}*/
+
+		mysql_close($con);
 	}
 
 ?>
