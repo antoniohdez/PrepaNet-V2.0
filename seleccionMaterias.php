@@ -53,27 +53,15 @@
 									<?php
 										printCursables();
 									?>
-									<!--
-									<div>
-										<div class="materia">
-											<span class="textAlign">Inglés II</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									<div>
-										<div class="materia">
-											<span class="textAlign">Historia de México</span>
-											<span><button class="btn btn-success button">Inscribir</button></span>
-										</div>
-									</div>
-									-->
 								</div>
 							</div>
 						</div>
 						
 					</div>
 					<div class="centerText">
+						<span>Has inscrito <b><span id="unidades">0</span> unidades</b> de las 45 disponibles<br><br></span>
 						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" onClick="window.location.href='inscripcionCompleta.php'">Registrar materias</button>
+						
 					</div>
 				</div>
     		</div>
@@ -115,7 +103,7 @@
 		    			materias--;
 		    		
 			    		unidades = parseInt(unidades) + parseInt($old.children().attr("unidades"));
-			    		
+			    		$("#unidades").html(unidades);
 				    	listaMaterias.push($old.children().attr('id'));
 				    	console.log(listaMaterias);
 
@@ -141,7 +129,9 @@
 				}else{
 					materias++;
 
-					//var y = [1, 2, 3]
+					unidades = parseInt(unidades) - parseInt($old.children().attr("unidades"));
+					$("#unidades").html(unidades);
+					
 					var removeItem = $old.children().attr('id');
 
 					var index = listaMaterias.indexOf(removeItem);
