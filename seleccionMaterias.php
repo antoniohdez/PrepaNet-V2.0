@@ -66,7 +66,7 @@
 											<span><button class="btn btn-success button">Inscribir</button></span>
 										</div>
 									</div>
-								-->
+									-->
 								</div>
 							</div>
 						</div>
@@ -84,42 +84,73 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-    <?php
-    print 'var materias = '.$_GET['num'].';';
-    ?>
-    var unidades = 0;
-    $("#inscribirMaterias").attr("disabled","disabled");
-    $("#inscribirMaterias").html("Faltan " + materias + " materias");
+    
 	//Script para hacer control de las materias seleccionadas para inscripción
 	$(document).ready(function(){
+		<?php
+	    	print 'var materias = '.$_GET['num'].';';
+	    ?>
+	    var unidades = 0;
+	    $("#inscribirMaterias").attr("disabled","disabled");
+	    $("#inscribirMaterias").html("Faltan " + materias + " materias");
+	    var listaMaterias = [];
+
+	    $("#inscribirMaterias").click(function(){
+	    	//Metodo para guardar las materias
+	    });
+
 		$("button").click(function(){
 			//A partir del boton donde se dió click se obtiene el elemento padre que se va a mover.
 	    	var $old = $(this).parent().parent().parent();
 	    	if($old.parent().attr('id') === "disponibles" || $old.parent().attr('id') === "inscritas"){
 		    	var width = $old.width();
 		    	//var $old = $(this).parent().parent().parent();
+		    	//console.log(unidades + parseInt($old.children().attr("unidades")));
 		    	if($old.parent().attr('id') === "disponibles"){
-		    		materias--;
-			    	$(this).removeClass("btn-success").addClass("btn-danger");
-			    	$(this).html("Eliminar");
-			    	$(this).attr('id', 'inscrita');
-			    	$("#inscribirMaterias").html("Faltan " + materias + " materias");
-			    	if(materias == 0){
-						$(".btn-success").attr("disabled","disabled");
-						$("#inscribirMaterias").removeAttr("disabled");
-						$("#inscribirMaterias").html("Inscribir materias");
-					}
-					if(materias == 1){
-						$("#inscribirMaterias").html("Falta " + materias + " materia");
-					}
-					//First we copy the arrow to the new table cell and get the offset to the document
-					var $new = $old.clone(true);
-					$new.prependTo('#inscritas');
-					$(this).removeClass("btn-danger").addClass("btn-success");
-			    	$(this).html("Inscribir");
-			    	$(this).attr('id', 'disponible');
+		    		if((unidades + parseInt($old.children().attr("unidades"))) > 45){
+		    			alert("No puedes inscribir más de 45 unidades");
+		    			return;
+		    		}
+		    		else{
+		    			materias--;
+		    		
+			    		unidades = parseInt(unidades) + parseInt($old.children().attr("unidades"));
+			    		
+				    	listaMaterias.push($old.children().attr('id'));
+				    	console.log(listaMaterias);
+
+				    	$(this).removeClass("btn-success").addClass("btn-danger");
+				    	$(this).html("Eliminar");
+				    	$(this).attr('id', 'inscrita');
+				    	$("#inscribirMaterias").html("Faltan " + materias + " materias");
+				    	if(materias == 0){
+							$(".btn-success").attr("disabled","disabled");
+							$("#inscribirMaterias").removeAttr("disabled");
+							$("#inscribirMaterias").html("Inscribir materias");
+						}
+						if(materias == 1){
+							$("#inscribirMaterias").html("Falta " + materias + " materia");
+						}
+						//First we copy the arrow to the new table cell and get the offset to the document
+						var $new = $old.clone(true);
+						$new.prependTo('#inscritas');
+						$(this).removeClass("btn-danger").addClass("btn-success");
+				    	$(this).html("Inscribir");
+				    	$(this).attr('id', 'disponible');
+		    		}
 				}else{
 					materias++;
+
+					//var y = [1, 2, 3]
+					var removeItem = $old.children().attr('id');
+
+					var index = listaMaterias.indexOf(removeItem);
+					if (index > -1) {
+					    listaMaterias.splice(index, 1);
+					}
+
+					console.log(listaMaterias);
+
 					if(materias > 1){
 						$(".btn-success").removeAttr("disabled");
 						$("#inscribirMaterias").attr("disabled","disabled");
@@ -140,7 +171,6 @@
 			    	$(this).html("Eliminar");
 			    	$(this).attr('id', 'inscrita');
 				}
-				
 				//addthis.button(this);
 				//var newOffset = $new.offset();
 				//Get the old position relative to document
@@ -172,8 +202,7 @@
 					});
 
 				}
-
-				if($old.parent().attr('id') === "inscritas"){
+				else if($old.parent().attr('id') === "inscritas"){
 					//$new.css('height', 0);
 					$new.height(0);
 					$new.animate({'height': altura}, 200, function(){
@@ -182,9 +211,7 @@
 					$old.animate({'height': 0}, 200, function(){
 						
 					});
-
 				}
-
 				//animate the $temp to the position of the new img
 				/*
 				$temp.animate( {'top': newOffset.top, 'left':newOffset.left}, 400, function(){
