@@ -52,27 +52,24 @@
 								<div id="disponibles" class="listaMaterias">
 									<?php
 										printCursables();
+										
 									?>
 								</div>
 							</div>
-						</div>
-						
+						</div>	
 					</div>
 					<div class="centerText">
 						<span>Has inscrito <b><span id="unidades">0</span> unidades</b> de las 45 disponibles<br><br></span>
-						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" onClick="window.location.href='inscripcionCompleta.php'">Registrar materias</button>
-						
+						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" >Registrar materias</button>
 					</div>
 				</div>
     		</div>
     	</div>
 	</div>
-
 	
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-    
 	//Script para hacer control de las materias seleccionadas para inscripción
 	$(document).ready(function(){
 		<?php
@@ -85,6 +82,29 @@
 
 	    $("#inscribirMaterias").click(function(){
 	    	//Metodo para guardar las materias
+	    });
+
+	    $("#inscribirMaterias").click(function(){
+	    	var parametros = {
+				"materias" : listaMaterias
+			}
+			$.ajax({
+	            data: parametros,
+	            url: 'addInscripcion.php',
+	            type: 'post',
+	            beforeSend: function () {
+	                $("#inscribirMaterias").html("Registrando materias...");
+	            },
+	            success:  function (response) {
+	                console.log(response);
+	                if(response == "success"){
+	                	
+	                }
+	                else {
+	                	$("#inscribirMaterias").html("Inscribir materias");
+	                }
+	            }
+	        });
 	    });
 
 		$("button").click(function(){

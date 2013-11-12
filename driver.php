@@ -6,7 +6,7 @@
 		$con=mysqli_connect("localhost","root","","prepanet2");
 		if (mysqli_connect_errno())
 	  	{
-	  		echo "Falló la conexión a la base de datos: " . mysqli_connect_error();
+	  		print "Falló la conexión a la base de datos: " . mysqli_connect_error();
 	  	}
 	  	mysqli_set_charset($con, "utf8");
 	  	return $con;
@@ -28,7 +28,7 @@
 				else{
 					$user = $_POST["user"];
 					$pass = md5($_POST["password"]);
-					
+
 					/*
 					$stmt = mysqli_prepare($link, "SELECT * FROM Alumno where Matricula = ? AND Password = ?");
 					mysqli_stmt_bind_param($stmt, 'ss', $_POST["user"], $pass);
@@ -112,47 +112,58 @@
 		}
 	}
 
-	function getCursables(){
-		$con = conectar();
-		$query = "SELECT Clave, Nombre, Unidades, Cuatrimestre FROM Materia NATURAL JOIN PlanEStudios order by Cuatrimestre asc;";
-		if($result = mysqli_query($con, $query)){
-			return $result;
-		}
-	}
-
-	function setRegistro(){//$_GET
+	function setRegistro(){
 		$con = conectar();
 		$telefono = $_GET["phone"];
 		$correo = $_GET["email"];
 		//$Nmaterias = $_GET["num"];
 		$incubadora = $_GET["incubadora"];
-		$query = "UPDATE  prepanet.Alumno SET Telefono = $telefono, Mail = '$correo', Incubadora = '$incubadora'  
-					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
-		if($result = mysqli_query($con, $query)){
-			return $result;
-		}
+		$query = "UPDATE Alumno SET Telefono = $telefono, Mail = '$correo', Incubadora = '$incubadora' WHERE  Matricula = '".$_SESSION["user"]."';";
+		mysqli_query($con, $query);
+		
 		mysql_close($con);
 	}
 
-	function setNewPassword(){//$_POST
+	function getCursables(){
 		$con = conectar();
-		$password = md5($_POST['contraseñaVieja']);
-		$newPassword = $_POST["contraseña"];
-		$quer = mysqli_query($con,"SELECT Password FROM Alumno where Matricula = '".$_SESSION["user"]."';");
-		$row = $quer->fetch_array(MYSQLI_ASSOC);
-		if($row["Password"] == $password){
-			$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
-					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
-			if($result = mysqli_query($con, $query)){
-				return $result;
-				}
+		$query = "SELECT * FROM PlanEstudios NATURAL JOIN (SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN (SELECT Clave FROM Cursadas)) A;";
+		//$query = "SELECT Clave, Nombre, Unidades, Cuatrimestre FROM Materia NATURAL JOIN PlanEStudios order by Cuatrimestre asc;";
+		if($result = mysqli_query($con, $query)){
+			return $result;
 		}
+	}
 
-	/*	$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
-					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
-			if($result = mysqli_query($con, $query)){
-				return $result;
-				}*/
+	function setInscripcion(){
+		$con = conectar();
+		$materias = $_POST["materias"];
+		for($i = 0; $i < count($materias); $i++){
+			if(mysqli_query($con,"INSERT INTO Cursadas VALUES ('".$_SESSION["user"]."', '$materias[$i]', 'DIC2013');")){
+				print "Si";
+			}
+			else{
+				print "No";
+			}
+		}
+		
+	}
+
+	function getReporteInscritas(){
+		
+	}
+
+	function setNewPassword(){
+		$con = conectar();
+		$password = md5($_POST['oldPassword']);
+		$newPassword = md5($_POST["newPassword"]);
+		$newPassword2 = md5($_POST["newPassword2"]);
+		if($newPassword == $newPassword2){
+			$result = mysqli_query($con,"SELECT Password FROM Alumno where Matricula = '".$_SESSION["user"]."';");
+			$row = $result->fetch_array(MYSQLI_ASSOC);
+			if($row["Password"] == $password){
+				$result = mysqli_query($con, "UPDATE Alumno SET Password = '$newPassword' WHERE Matricula = '".$_SESSION["user"]."';");
+				
+			}
+		}
 
 		mysql_close($con);
 	}
