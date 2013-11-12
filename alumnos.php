@@ -30,27 +30,28 @@
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
 				<div class="content">
-					<div class="centerText"> Alumnos </div>
-						<div class="row">
-							<div class="col-md-3 centerText">
-								<div class="option">
-									<div class="centradoVertical">Inscribir Alumno</div>
-								</div>
+					<div class="centerText">
+						<h3>Alumnos</h3>
+					</div>
+					<div class="row">
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Inscribir Alumno</div>
 							</div>
-							<div class="col-md-3 centerText">
-								<div class="option">
-									<div class="centradoVertical">Agregar</div>
-								</div>
+						</div>
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Agregar</div>
 							</div>
-							<div class="col-md-3 centerText">
-								<div class="option">
-									<div class="centradoVertical">Editar/Actualizar</div>
-								</div>
+						</div>
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Actualizar información</div>
 							</div>
-							<div class="col-md-3 centerText">
-								<div class="option">
-									<div class="centradoVertical">Eliminar</div>
-								</div>
+						</div>
+						<div class="col-md-3 centerText">
+							<div class="option">
+								<div class="centradoVertical">Eliminar</div>
 							</div>
 						</div>
 					</div>

@@ -36,7 +36,7 @@
 					<div class="row">
 						<div class="col-md-3 centerText">
 							<div class="option">
-								<div class="centradoVertical">Inscripción</div>
+								<div id="inscripcion" class="centradoVertical">Inscripción</div>
 							</div>
 						</div>
 						<div class="col-md-3 centerText">
@@ -70,5 +70,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script> 
+    <script type="text/javascript">
+    	$("#inscripcion").click(function(){
+    		window.location.replace("generaReporte.php");
+    	});
+    </script>
 </body>
 </html>

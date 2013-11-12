@@ -2,6 +2,8 @@
 	include "DOMElements/view.php";
 	validarSession("student");
 	setRegistro();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,7 +54,7 @@
 								<div id="disponibles" class="listaMaterias">
 									<?php
 										printCursables();
-										
+
 									?>
 								</div>
 							</div>
@@ -62,7 +64,6 @@
 						<span>Has inscrito <b><span id="unidades">0</span> unidades</b> de las 45 disponibles<br><br></span>
 						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" >Registrar materias</button>
 					</div>
-				</div>
     		</div>
     	</div>
 	</div>
@@ -97,12 +98,7 @@
 	            },
 	            success:  function (response) {
 	                console.log(response);
-	                if(response == "success"){
-	                	
-	                }
-	                else {
-	                	$("#inscribirMaterias").html("Inscribir materias");
-	                }
+	                window.location.replace("inscripcionCompleta.php");
 	            }
 	        });
 	    });

@@ -53,7 +53,7 @@
 						Este sistema de inscripciones te permitirá llevar a cabo el proceso de inscripción de materias para tu próximo cuatrimestre de una forma sencilla.
 					</p>
 					<p>
-						Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.
+						<!--Si no has utilizado este sistema antes, puedes ver una pequeña guia dando <a href="#">click aquí</a>.-->
 					</p>
 				</div>
 				<div class="centerText">

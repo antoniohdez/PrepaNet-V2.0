@@ -126,7 +126,7 @@
 
 	function getCursables(){
 		$con = conectar();
-		$query = "SELECT * FROM PlanEstudios NATURAL JOIN (SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN (SELECT Clave FROM Cursadas)) A;";
+		$query = "SELECT * FROM PlanEstudios NATURAL JOIN (SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN (SELECT Clave FROM Cursadas)) A limit 0,10;";
 		//$query = "SELECT Clave, Nombre, Unidades, Cuatrimestre FROM Materia NATURAL JOIN PlanEStudios order by Cuatrimestre asc;";
 		if($result = mysqli_query($con, $query)){
 			return $result;
@@ -148,6 +148,34 @@
 	}
 
 	function getReporteInscritas(){
+		$con = conectar();
+		$result = mysqli_query($con, "SELECT DISTINCT Matricula, Clave FROM cursadas;");
+		$tbHtml = "<table>
+		           	   <header>
+		                   <tr>
+		                       <th>Matricula</th>
+		                       <th>Materias</th>
+		                   </tr>
+		               </header>";
+		while($row = mysqli_fetch_array($result)){
+			$tbHtml .= '<tr><td>'.$row[0].'</td>';
+			
+			$result = mysqli_query($con, "SELECT Clave FROM cursadas WHERE Matricula='".$row[0]."';");
+			while($materias = mysqli_fetch_array($result)){
+				$tbHtml .= '<td>'.$materias[0].'</td>';
+			}
+			$tbHtml .= '</tr>';
+		}
+		$tbHtml .= '</html>';
+		$paises = array(0=>'México','Venezuela','Colombia','Belice','Guatemala',
+	                 'Perú','Brasil','Panamá');
+
+		
+		header("Content-type: application/octet-stream");
+		header("Content-Disposition: attachment; filename=reporteInscritas.xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		print $tbHtml;
 		
 	}
 
@@ -164,6 +192,12 @@
 				
 			}
 		}
+
+	/*	$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
+					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
+			if($result = mysqli_query($con, $query)){
+				return $result;
+				}*/
 
 		mysql_close($con);
 	}

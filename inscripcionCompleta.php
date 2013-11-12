@@ -40,7 +40,9 @@
 						</p>
 					</div>
 					<div class="centerText">
+						<!--
 						<button class="btn btn-primary signIn" type="submit">Reenviar correo</button>
+						-->
 					</div>
 				</div>
     		</div>
