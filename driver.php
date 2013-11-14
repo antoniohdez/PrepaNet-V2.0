@@ -28,29 +28,51 @@
 				else{
 					$user = $_POST["user"];
 					$pass = md5($_POST["password"]);
-
-					/*
-					$stmt = mysqli_prepare($link, "SELECT * FROM Alumno where Matricula = ? AND Password = ?");
-					mysqli_stmt_bind_param($stmt, 'ss', $_POST["user"], $pass);
-					$code = 'DEU';
-					$language = 'Bavarian';
-					$official = "F";
-					$percent = 11.2;
-					// execute prepared statement 
-					mysqli_stmt_execute($stmt);					
-					*/
 					$con = conectar();
-					
-					if($result = mysqli_query($con,"SELECT * FROM Alumno where Matricula = '$user' AND Password = '$pass'")){
-						if(mysqli_num_rows($result) == 1){
-							$row = $result->fetch_array(MYSQLI_ASSOC);
-							$_SESSION["user"] = $row["Matricula"];
-							$_SESSION["name"] = $row["Nombre"];
-							$_SESSION["type"] = "student";
-							mysqli_free_result($result);
-							mysqli_close($link);
+					//if($result = mysqli_query($con,"SELECT * FROM Alumno where Matricula = '$user' AND Password = '$pass'")){
+					if($stmt = $con->prepare("SELECT Matricula, Nombre FROM Alumno where Matricula = ? AND Password = ?")){
+						$stmt->bind_param('ss', $_POST["user"], $pass);
+						if($stmt->execute()){
+							$stmt->bind_result($mat, $nom);
+						    if($stmt->fetch()) {
+						    	$_SESSION["user"] = $mat;
+								$_SESSION["name"] = $nom;
+								$_SESSION["type"] = "student";
+						        $stmt->close();
+						        mysqli_close($con);
+						   	}
+						   	else{
+						   		if($stmt = $con->prepare("SELECT Nomina, Nombre FROM Administrador where Nomina = ? AND Password = ?")){
+									$stmt->bind_param('ss', $_POST["user"], $pass);
+									if($stmt->execute()){
+										$stmt->bind_result($mat, $nom);
+									    if($stmt->fetch()) {
+									    	$_SESSION["user"] = $mat;
+											$_SESSION["name"] = $nom;
+											$_SESSION["type"] = "admin";
+									        $stmt->close();
+									        mysqli_close($con);
+									   	}else{
+									   		mysqli_close($con);
+									   		header("Location: login.php?error=1");//El usuario no está en la base de datos
+									   	}
+									}
+									else{
+										mysqli_close($con);
+										header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
+									}
+								}
+								else{
+									mysqli_close($con);
+									header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
+								}
+						   	}
+							
+						}else{
+							mysqli_close($con);
+							header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
 						}
-						else{//El usuario no es alumno
+							/*
 							if($result = mysqli_query($con,"SELECT * FROM Administrador where Nomina = '$user' AND Password = '$pass'")){
 								if(mysqli_num_rows($result) == 1){
 									$row = $result->fetch_array(MYSQLI_ASSOC);
@@ -66,10 +88,9 @@
 							}
 							else{
 								mysqli_close($con);
-
 								header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
 							}
-						}
+							*/
 					}
 					else{
 						mysqli_close($con);
