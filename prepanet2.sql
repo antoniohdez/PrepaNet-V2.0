@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-11-2013 a las 01:37:42
+-- Tiempo de generación: 14-11-2013 a las 17:39:16
 -- Versión del servidor: 5.1.44
 -- Versión de PHP: 5.3.1
 
@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `Alumno` (
 --
 
 INSERT INTO `Alumno` (`Matricula`, `Nombre`, `ApellidoP`, `ApellidoM`, `Telefono`, `PBeca`, `Convenio`, `Mail`, `Password`, `Incubadora`) VALUES
-('A01224955', 'Antonio', 'Reyes', 'Espinoza', '3314091133', 40, 'Telmex', 'antonioreyes002@gmail.com', 'b2cc61954ebcfc4a8bf82175ac073b12', 'Ninguna'),
-('A01224787', 'Antonio', 'Hernández', 'Campos', '3111202122', 20, 'Bimbo', 'antonio.hdez93@gmail.com', '3d6b66d6d3fcb28cf0e507f863d6117e', 'Incubadora Social Sauz');
+('A01224955', 'Antonio', 'Reyes', 'Espinoza', '3314091133', 40, 'Telmex', 'antonioreyes002@gmail.com', 'b2cc61954ebcfc4a8bf82175ac073b12', 'Incubadora Social Jocotan'),
+('A01224787', 'Antonio', 'Hernández', 'Campos', '3311030405', 20, 'Bimbo', 'elcorreo@gmail.com', 'c20ad4d76fe97759aa27a0c99bff6710', 'Incubadora Social Jocotan');
 
 -- --------------------------------------------------------
 
@@ -87,6 +87,13 @@ CREATE TABLE IF NOT EXISTS `Cursadas` (
 -- Volcar la base de datos para la tabla `Cursadas`
 --
 
+INSERT INTO `Cursadas` (`Matricula`, `Clave`, `Periodo`) VALUES
+('A01224787', 'PS-2000L', 'DIC2013'),
+('A01224787', 'PH-3017L', 'DIC2013'),
+('A01224787', 'PD-1015L', 'DIC2013'),
+('A01224787', 'PD-1014L', 'DIC2013'),
+('A01224787', 'PS-1009L', 'DIC2013'),
+('A01224787', 'PL-1008L', 'DIC2013');
 
 -- --------------------------------------------------------
 
@@ -116,7 +123,29 @@ INSERT INTO `Materia` (`Clave`, `Nombre`) VALUES
 ('PL-2000L', 'Taller de lectura y redacción II'),
 ('PM-2000L', 'Matemática II'),
 ('PS-2000L', 'Informática II'),
-('PI-2005L', 'Inglés I');
+('PI-2005L', 'Inglés I'),
+('PC-3014L', 'Química II'),
+('PH-3017L', 'Historia de México'),
+('PI-3007L', 'Inglés II'),
+('PM-3000L', 'Matemáticas III'),
+('PS-3004L', 'Informática III'),
+('PL-3006L', 'Lenguaje y comunicación'),
+('PC-4018L', 'Métodos de investigación'),
+('PC-4019L', 'Biología'),
+('PD-4010L', 'Ética ciudadana'),
+('PL-4006L', 'Literatura'),
+('PM-4000L', 'Matemáticas IV'),
+('PS-4003L', 'Informática IV'),
+('PC-5032L', 'Física I'),
+('PC-5033L', 'Ciencias de la salud'),
+('PH-5030L', 'Introducción a la administración'),
+('PH-5029L', 'Introducción a las ciencias sociales'),
+('PH-5031L', 'Economía y estado'),
+('PC-6040L', 'Física II'),
+('PD-6012L', 'Historia y apreciación del arte'),
+('PH-6032L', 'Administración de proyectos'),
+('PD-6013L', 'Filosofía'),
+('PH-6033L', 'Estructura socioeconómica de Mexico');
 
 -- --------------------------------------------------------
 
@@ -137,10 +166,28 @@ CREATE TABLE IF NOT EXISTS `Materia_Requisito` (
 
 INSERT INTO `Materia_Requisito` (`Clave`, `Requisito`) VALUES
 ('PC-2000L', 'PM-1011L'),
+('PC-3014L', 'PC-2000L'),
+('PC-4018L', 'PD-1014L'),
+('PC-4019L', 'PC-3014L'),
+('PC-5032L', 'PM-4000L'),
+('PC-5033L', 'PC-4018L'),
+('PC-6040L', 'PC-5032L'),
 ('PH-2008L', 'PD-1014L'),
+('PH-3017L', 'PH-2008L'),
+('PH-5029L', 'PH-3017L'),
+('PH-5031L', 'PH-3017L'),
+('PH-6032L', 'PH-5030L'),
+('PH-6033L', 'PH-5031L'),
+('PI-3007L', 'PI-2005L'),
 ('PL-2000L', 'PL-1008L'),
+('PL-3006L', 'PL-2000L'),
+('PL-4006L', 'PL3006L'),
 ('PM-2000L', 'PM-1011L'),
-('PS-2000L', 'PS-1009L');
+('PM-3000L', 'PM-2000L'),
+('PM-4000L', 'PM3000L'),
+('PS-2000L', 'PS-1009L'),
+('PS-3004L', 'PS-2000L'),
+('PS-4003L', 'PS3004L');
 
 -- --------------------------------------------------------
 
@@ -170,4 +217,26 @@ INSERT INTO `PlanEstudios` (`Nombre`, `Unidades`, `Cuatrimestre`) VALUES
 ('Taller de lectura y redacción II', 6, 2),
 ('Matemática II', 11, 2),
 ('Informática II', 4, 2),
-('Inglés I', 4, 2);
+('Inglés I', 4, 2),
+('Química II', 8, 3),
+('Historia de México', 8, 3),
+('Inglés II', 4, 3),
+('Matemáticas III', 11, 3),
+('Informática III', 4, 3),
+('Lenguaje y comunicación', 6, 3),
+('Métodos de investigación', 11, 4),
+('Biología', 10, 4),
+('Ética ciudadana', 6, 4),
+('Literatura', 3, 4),
+('Matemáticas IV', 11, 4),
+('Informática IV', 4, 4),
+('Física I', 10, 5),
+('Ciencias de la salud', 7, 5),
+('Introducción a la administración', 7, 5),
+('Introducción a las ciencias sociales', 10, 5),
+('Economía y estado', 7, 5),
+('Física II', 10, 6),
+('Historia y apreciación del arte', 7, 6),
+('Administración de proyectos', 7, 6),
+('Filosofía', 7, 6),
+('Estructura socioeconómica de Mexico', 7, 6);
