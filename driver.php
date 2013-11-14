@@ -12,6 +12,10 @@
 	  	return $con;
 	}
 	
+	function crearSession(){
+		
+	}
+
 	//Valida los permisos del usuario para estar en una página, en caso de no tenerlos los envia al index si es que iniciaron sesión
 	//En caso de no tener una sesión iniciada, esta se crea desde el index.
 	function validarSession($session){
@@ -67,7 +71,6 @@
 									header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
 								}
 						   	}
-							
 						}else{
 							mysqli_close($con);
 							header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
