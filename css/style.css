@@ -34,6 +34,16 @@ div.CScontenedor{
 	margin-bottom: 50px;
 }
 
-div.centerText{
+.centerText{
 	text-align: center;
+}
+
+div.inscOption{
+	margin-top:10px;
+}
+
+span.inscOptionIMG{
+	width: 40px;
+	display: inline-block;
+	height: 32px;
 }

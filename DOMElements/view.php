@@ -41,6 +41,39 @@
 		';
 	}
 
+	function printProgress(){
+		if($_SESSION["type"] == "student")
+		print '<div class="centerText">
+						<h4 style="margin:0">Estatus de inscripción</h4>
+					</div>
+					<hr>
+					<div class="inscOption">
+						<span class="inscOptionIMG"><img src="img/32px-Green_check.png"></span>
+						<span>Registro Administrativo</span>
+					</div>
+					<div class="inscOption">
+						<span class="inscOptionIMG"><img src="img/32px-Green_check.png"></span>
+						<span>Selección de materias</span>
+					</div>
+					<div class="inscOption">
+						<span class="inscOptionIMG"><img src="img/32px-Green_check.png"></span>
+						<span>Inscrpcion Terminada</span>
+					</div>';
+		if($_SESSION["type"] == "admin")
+		print '<div class="centerText">
+						<h4 style="margin:0">Estatus de inscripción</h4>
+					</div>
+					<hr>
+					<div class="inscOption">
+						<span class="inscOptionIMG centerText"> - </span>
+						<span>Alumnos inscritos</span>
+					</div>
+					<div class="inscOption">
+						<span class="inscOptionIMG centerText"> - </span>
+						<span>Alumnos nunca inscritos</span>
+					</div>';
+	}
+
 	function printIndex(){//Falta validar el tipo de sesión al imprimir el index
 		if($_SESSION["type"] == "student")
 		print '
