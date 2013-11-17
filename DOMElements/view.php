@@ -29,8 +29,9 @@
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> '. $_SESSION["name"] .' <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
 		                        	<li><a href="password.php">Cambiar contraseña</a></li>
-		                        	<li class="divider"></li>
 		                            <li><a href="logout.php">Cerrar sesión</a></li>
+		                            <li class="divider"></li>
+		                            <li><a href="#">Información</a></li>
 		                        </ul>
 		                    </li>
 						</ul>';
@@ -48,15 +49,21 @@
 					</div>
 					<hr>
 					<div class="inscOption">
-						<span class="inscOptionIMG"><img src="img/32px-Green_check.png"></span>
-						<span>Registro Administrativo</span>
+						<span class="inscOptionIMG">
+							<img src="img/32px-Green_check.png">
+						</span>
+						<span>Confirmar información</span>
 					</div>
 					<div class="inscOption">
-						<span class="inscOptionIMG"><img src="img/32px-Green_check.png"></span>
+						<span class="inscOptionIMG">
+							<img src="img/32px-Green_check.png">
+						</span>
 						<span>Selección de materias</span>
 					</div>
 					<div class="inscOption">
-						<span class="inscOptionIMG"><img src="img/32px-Green_check.png"></span>
+						<span class="inscOptionIMG">
+							<img src="img/32px-Green_check.png">
+						</span>
 						<span>Inscrpcion Terminada</span>
 					</div>';
 		if($_SESSION["type"] == "admin")
