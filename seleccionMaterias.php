@@ -36,6 +36,12 @@
 						printProgress();
 					?>
 				</div>
+				<div class="content">
+					<div class="centerText">
+						<span>Has inscrito <b><span id="unidades">0</span> unidades</b> de las 45 unidades máximas<br><br></span>
+						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" >Registrar materias</button>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-9">
 				<div class="content">
@@ -48,7 +54,7 @@
 								<div class="centerText title">
 									<h4>Inscritas</h4>
 								</div>
-								<div id="inscritas" class="listaMaterias">
+								<div id="inscritas" class="listaMateriasInscritas">
 									<!--
 									Espacio donde se visualizan las materias inscritas
 									-->
@@ -66,10 +72,6 @@
 								</div>
 							</div>
 						</div>	
-					</div>
-					<div class="centerText">
-						<span>Has inscrito <b><span id="unidades">0</span> unidades</b> de las 45 disponibles<br><br></span>
-						<button id="inscribirMaterias" style="font-size:20px" class="btn btn-primary signIn" >Registrar materias</button>
 					</div>
     		</div>
     	</div>

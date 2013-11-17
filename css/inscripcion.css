@@ -32,8 +32,15 @@ div.materia{
 	cursor: default;
 }
 
-div.listaMaterias{
-	height: 350px;
+div.listaMateriasInscritas{
+	max-height: 380px; 
+	/*height: 350px;*/
+	padding-bottom: 1em;
+	overflow: auto;
+}
+
+div.listaMaterias{ 
+	height: 380px;
 	padding-bottom: 1em;
 	overflow: -moz-scrollbars-vertical;
     overflow: scroll;
