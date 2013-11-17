@@ -26,7 +26,14 @@
 	?>
 	<div class="container CScontenedor">
 		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
+			<div class="col-md-3">
+				<div class="content">
+					<?php
+						printProgress();
+					?>
+				</div>
+			</div>
+			<div class="col-md-9">
 				<div class="content">
 					<div class="centerText">
 						<h3>Inscripción completa</h3>
