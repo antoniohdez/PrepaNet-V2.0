@@ -10,7 +10,7 @@ body{
 	/* No support for these yet, use at own risk */
 	-o-user-select: none;
 	user-select: none;
-	height:100%;
+
 }
 
 /*
@@ -50,8 +50,9 @@ span.inscOptionIMG{
 }
 
 footer{
-	background:#FFF;
-	width: auto;
+	position: relative;
+	margin: -30px auto 20px auto; /* negative value of footer height */
 	height: 50px;
-	margin: auto auto 50px;
+	clear:both;
+
 }

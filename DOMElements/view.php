@@ -43,12 +43,16 @@
 	}
 
 	function printFooter(){
-		print '<footer class="content">
-				Contacto
-				Acerca de...
-				Ayuda
-				Etc.
-			</footer>
+		print '<footer class="row">
+					<div class="col-md-12">
+						<div class="container content">
+							Contacto
+							Acerca de...
+							Ayuda
+							Etc.
+						</div>
+					</div>
+				</footer>
 			';
 	}
 
