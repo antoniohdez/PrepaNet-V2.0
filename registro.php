@@ -36,7 +36,7 @@
 			<div class="col-md-9">
 				<div class="content">
 					<div class="centerText">
-						<h3>Registro administrativo</h3>
+						<h3>Actualiza tu información</h3>
 					</div>
 					<?php
 						getFormRegistro();
@@ -45,7 +45,9 @@
     		</div>
     	</div>
 	</div>
-
+	<?php
+		printFooter();
+	?>
 	
     <!-- Bootstrap core JavaScript
     ================================================== -->

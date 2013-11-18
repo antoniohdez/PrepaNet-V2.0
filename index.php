@@ -40,6 +40,9 @@
     		</div>
     	</div>
 	</div>
+	<?php
+		printFooter();
+	?>
 
 	
     <!-- Bootstrap core JavaScript

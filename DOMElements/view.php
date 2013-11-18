@@ -3,7 +3,7 @@
 	//session_start();
 	function printTopbar(){//Falta validar el tipo de sesión
 		print '
-			<div class="navbar navbar-inverse navbar-fixed-top">
+			<header class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,8 +38,18 @@
 						print ' 
 					</div><!--/.nav-collapse -->
 				</div>
-			</div>
+			</header>
 		';
+	}
+
+	function printFooter(){
+		print '<footer class="content">
+				Contacto
+				Acerca de...
+				Ayuda
+				Etc.
+			</footer>
+			';
 	}
 
 	function printProgress(){
@@ -64,7 +74,7 @@
 						<span class="inscOptionIMG">
 							<img src="img/32px-Green_check.png">
 						</span>
-						<span>Inscrpcion Terminada</span>
+						<span>Inscripción Terminada</span>
 					</div>';
 		if($_SESSION["type"] == "admin")
 		print '<div class="centerText">
@@ -170,7 +180,7 @@
 			    </div>
 			</div>
 			<div class="form-group">
-			    <label for="incubadora" class="col-md-3 control-label">Incubadora:</label>
+			    <label for="incubadora" class="col-md-3 control-label">Incubadora a la que asisto para asesorias:</label>
 			    <div class="col-md-9">
 			    	<select class="form-control" name="incubadora">
 
@@ -185,10 +195,6 @@
 						<option value="Incubadora Social Jocotan" ';
 						if($row["Incubadora"] === "Incubadora Social Jocotan"){ print 'selected="selected"'; }
 						print '>Incubadora Social Jocotan</option>
-
-						<option value="Desconozco su ubicación" ';
-						if($row["Incubadora"] === "Desconozco su ubicación"){ print 'selected="selected"'; }
-						print '>Desconozco su ubicación</option>
 
 						<option value="Ninguna" ';
 						if($row["Incubadora"] === "Ninguna"){ print 'selected="selected"'; }

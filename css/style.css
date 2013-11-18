@@ -10,6 +10,7 @@ body{
 	/* No support for these yet, use at own risk */
 	-o-user-select: none;
 	user-select: none;
+	height:100%;
 }
 
 /*
@@ -21,7 +22,7 @@ div.background{
 }
 */
 
-div.content{
+.content{
 	background: #FFF;
 	border: 1px solid #AAA;
 	border-radius: 5px;
@@ -46,4 +47,11 @@ span.inscOptionIMG{
 	width: 40px;
 	display: inline-block;
 	height: 32px;
+}
+
+footer{
+	background:#FFF;
+	width: auto;
+	height: 50px;
+	margin: auto auto 50px;
 }
