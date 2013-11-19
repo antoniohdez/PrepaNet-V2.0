@@ -1,7 +1,11 @@
 <?php
 	include "DOMElements/view.php";
 	validarSession("student");
-	setRegistro();
+	if($_SESSION["etapa"] == 3){
+		header("location: inscripcionCompleta.php");
+	}else{
+		setRegistro();
+	}
 
 
 ?>
@@ -175,7 +179,7 @@
 					if(materias < 2){
 						$(".btn-success").removeAttr("disabled");
 						$("#inscribirMaterias").attr("disabled","disabled");
-    					$("#inscribirMaterias").html("Faltan " + materias + " materias");
+    					$("#inscribirMaterias").html("Faltan " + (2-materias) + " materias");
 					}
 					if(materias == 1){
 						$("#inscribirMaterias").attr("disabled","disabled");

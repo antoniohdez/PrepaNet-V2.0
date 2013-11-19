@@ -42,6 +42,7 @@
 						    	$_SESSION["user"] = $mat;
 								$_SESSION["name"] = $nom;
 								$_SESSION["type"] = "student";
+								$_SESSION["etapa"] = 0;
 						        $stmt->close();
 						        mysqli_close($con);
 						   	}
@@ -144,7 +145,7 @@
 		$incubadora = $_GET["incubadora"];
 		$query = "UPDATE Alumno SET Telefono = $telefono, Mail = '$correo', Incubadora = '$incubadora' WHERE  Matricula = '".$_SESSION["user"]."';";
 		mysqli_query($con, $query);
-		
+		$_SESSION["etapa"] = 1;
 		mysql_close($con);
 	}
 
@@ -163,6 +164,7 @@
 		for($i = 0; $i < count($materias); $i++){
 			if(mysqli_query($con,"INSERT INTO Cursadas VALUES ('".$_SESSION["user"]."', '$materias[$i]', 'DIC2013');")){
 				print "Si";
+				$_SESSION["etapa"] = 3;
 			}
 			else{
 				print "No";

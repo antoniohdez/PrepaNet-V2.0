@@ -43,6 +43,7 @@
 	}
 
 	function printFooter(){
+		/*
 		print '<footer class="row">
 					<div class="col-md-12">
 						<div class="container content">
@@ -54,6 +55,7 @@
 					</div>
 				</footer>
 			';
+		*/
 	}
 
 	function printProgress(){
@@ -63,20 +65,32 @@
 					</div>
 					<hr>
 					<div class="inscOption">
-						<span class="inscOptionIMG">
-							<img src="img/32px-Green_check.png">
+						<span class="inscOptionIMG centerText">';
+						if($_SESSION["etapa"] >= 1)
+							print '<img src="img/32px-Green_check.png">';
+						else
+							print '-';
+						print '
 						</span>
 						<span>Confirmar información</span>
 					</div>
 					<div class="inscOption">
-						<span class="inscOptionIMG">
-							<img src="img/32px-Green_check.png">
+						<span class="inscOptionIMG centerText">';
+						if($_SESSION["etapa"] >= 2)
+							print '<img src="img/32px-Green_check.png">';
+						else
+							print '-';
+						print '
 						</span>
 						<span>Selección de materias</span>
 					</div>
 					<div class="inscOption">
-						<span class="inscOptionIMG">
-							<img src="img/32px-Green_check.png">
+						<span class="inscOptionIMG centerText">';
+						if($_SESSION["etapa"] >= 2)
+							print '<img src="img/32px-Green_check.png">';
+						else
+							print '-';
+						print '
 						</span>
 						<span>Inscripción Terminada</span>
 					</div>';
