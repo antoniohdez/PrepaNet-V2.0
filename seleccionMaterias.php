@@ -85,17 +85,13 @@
     <script>
 	//Script para hacer control de las materias seleccionadas para inscripción
 	$(document).ready(function(){
-		<?php
-	    	print 'var materias = '.$_GET['num'].';';
-	    ?>
+		
+	    var materias = 0;
+	    
 	    var unidades = 0;
 	    $("#inscribirMaterias").attr("disabled","disabled");
-	    $("#inscribirMaterias").html("Faltan " + materias + " materias");
+	    $("#inscribirMaterias").html("Faltan " + (2-materias) + " materias");
 	    var listaMaterias = [];
-
-	    $("#inscribirMaterias").click(function(){
-	    	//Metodo para guardar las materias
-	    });
 
 	    $("#inscribirMaterias").click(function(){
 	    	var parametros = {
@@ -128,7 +124,7 @@
 		    			return;
 		    		}
 		    		else{
-		    			materias--;
+		    			materias++;
 		    		
 			    		unidades = parseInt(unidades) + parseInt($old.children().attr("unidades"));
 			    		$("#unidades").html(unidades);
@@ -138,14 +134,18 @@
 				    	$(this).removeClass("btn-success").addClass("btn-danger");
 				    	$(this).html("Eliminar");
 				    	$(this).attr('id', 'inscrita');
-				    	$("#inscribirMaterias").html("Faltan " + materias + " materias");
-				    	if(materias == 0){
+				    	if(materias >= 6){
 							$(".btn-success").attr("disabled","disabled");
-							$("#inscribirMaterias").removeAttr("disabled");
+						}
+				    	if(materias >= 2){
 							$("#inscribirMaterias").html("Inscribir materias");
+							$("#inscribirMaterias").removeAttr("disabled");
 						}
 						if(materias == 1){
 							$("#inscribirMaterias").html("Falta " + materias + " materia");
+						}
+						if(materias == 0){
+							$("#inscribirMaterias").html("Faltan " + (2-materias) + " materias");
 						}
 						//First we copy the arrow to the new table cell and get the offset to the document
 						var $new = $old.clone(true);
@@ -155,7 +155,7 @@
 				    	$(this).attr('id', 'disponible');
 		    		}
 				}else{
-					materias++;
+					materias--;
 
 					unidades = parseInt(unidades) - parseInt($old.children().attr("unidades"));
 					$("#unidades").html(unidades);
@@ -168,14 +168,16 @@
 					}
 
 					console.log(listaMaterias);
-
-					if(materias > 1){
+					if(materias < 6){
+						$(".btn-success").removeAttr("disabled");
+						
+					}
+					if(materias < 2){
 						$(".btn-success").removeAttr("disabled");
 						$("#inscribirMaterias").attr("disabled","disabled");
     					$("#inscribirMaterias").html("Faltan " + materias + " materias");
 					}
 					if(materias == 1){
-						$(".btn-success").removeAttr("disabled");
 						$("#inscribirMaterias").attr("disabled","disabled");
     					$("#inscribirMaterias").html("Falta " + materias + " materia");	
 					}

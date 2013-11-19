@@ -172,18 +172,6 @@
 			    </div>
 			</div>
 			<div class="form-group">
-			    <label for="materias" class="col-md-3 control-label">Materias a inscribir:</label>
-			    <div class="col-md-9">
-			    	<select class="form-control" name="num">
-						<option value="2" >2</option>
-						<option value="3" >3</option>
-						<option value="4" >4</option>
-						<option value="5" >5</option>
-						<option value="6" >6</option>
-					</select>
-			    </div>
-			</div>
-			<div class="form-group">
 			    <label for="incubadora" class="col-md-3 control-label">Incubadora a la que asisto para asesorias:</label>
 			    <div class="col-md-9">
 			    	<select class="form-control" name="incubadora">
