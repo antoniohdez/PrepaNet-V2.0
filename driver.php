@@ -13,7 +13,69 @@
 	}
 	
 	function crearSession(){
-		
+		$con = conectar();
+		if(!isset($_SESSION["user"])){
+		if(!isset($_POST["user"])){
+			header("location: login.php");
+		}
+		else{
+			$user = $_POST["user"];
+			$pass = md5($_POST["password"]);
+			$con = conectar();
+			if($stmt = $con->prepare("SELECT Matricula, Nombre FROM Alumno where Matricula = ? AND Password = ?")){
+				$stmt->bind_param('ss', $_POST["user"], $pass);
+				if($stmt->execute()){
+					$stmt->bind_result($mat, $nom);
+				    if($stmt->fetch()) {
+				    	$_SESSION["user"] = $mat;
+						$_SESSION["name"] = $nom;
+						$_SESSION["type"] = "student";
+						$_SESSION["etapa"] = 0;
+				        $stmt->close();
+				        mysqli_close($con);
+				        header("Location: index.php");
+				   	}
+				   	else{
+				   		if($stmt = $con->prepare("SELECT Nomina, Nombre FROM Administrador where Nomina = ? AND Password = ?")){
+							$stmt->bind_param('ss', $_POST["user"], $pass);
+							if($stmt->execute()){
+								$stmt->bind_result($mat, $nom);
+							    if($stmt->fetch()) {
+							    	$_SESSION["user"] = $mat;
+									$_SESSION["name"] = $nom;
+									$_SESSION["type"] = "admin";
+							        $stmt->close();
+							        mysqli_close($con);
+							        header("Location: index.php");
+							   	}else{
+							   		mysqli_close($con);
+							   		header("Location: login.php?error=1");//El usuario no está en la base de datos
+							   	}
+							}
+							else{
+								mysqli_close($con);
+								header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
+							}
+						}
+						else{
+							mysqli_close($con);
+							header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
+						}
+				   	}
+				}else{
+					mysqli_close($con);
+					header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
+				}
+			}
+			else{
+				mysqli_close($con);
+				header("Location: login.php?error=2");//No se pudo la consulta en la base de datos para alumnos
+			}
+		}
+	}
+	else{
+		header("Location: index.php");
+	}
 	}
 
 	//Valida los permisos del usuario para estar en una página, en caso de no tenerlos los envia al index si es que iniciaron sesión
@@ -22,85 +84,6 @@
 		if($session === "login"){
 			if(isset($_SESSION["user"])){
 				header("location: index.php");
-			}
-		}
-		else if($session === "index"){
-			if(!isset($_SESSION["user"])){
-				if(!isset($_POST["user"])){
-					header("location: login.php");
-				}
-				else{
-					$user = $_POST["user"];
-					$pass = md5($_POST["password"]);
-					$con = conectar();
-					//if($result = mysqli_query($con,"SELECT * FROM Alumno where Matricula = '$user' AND Password = '$pass'")){
-					if($stmt = $con->prepare("SELECT Matricula, Nombre FROM Alumno where Matricula = ? AND Password = ?")){
-						$stmt->bind_param('ss', $_POST["user"], $pass);
-						if($stmt->execute()){
-							$stmt->bind_result($mat, $nom);
-						    if($stmt->fetch()) {
-						    	$_SESSION["user"] = $mat;
-								$_SESSION["name"] = $nom;
-								$_SESSION["type"] = "student";
-								$_SESSION["etapa"] = 0;
-						        $stmt->close();
-						        mysqli_close($con);
-						   	}
-						   	else{
-						   		if($stmt = $con->prepare("SELECT Nomina, Nombre FROM Administrador where Nomina = ? AND Password = ?")){
-									$stmt->bind_param('ss', $_POST["user"], $pass);
-									if($stmt->execute()){
-										$stmt->bind_result($mat, $nom);
-									    if($stmt->fetch()) {
-									    	$_SESSION["user"] = $mat;
-											$_SESSION["name"] = $nom;
-											$_SESSION["type"] = "admin";
-									        $stmt->close();
-									        mysqli_close($con);
-									   	}else{
-									   		mysqli_close($con);
-									   		header("Location: login.php?error=1");//El usuario no está en la base de datos
-									   	}
-									}
-									else{
-										mysqli_close($con);
-										header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
-									}
-								}
-								else{
-									mysqli_close($con);
-									header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
-								}
-						   	}
-						}else{
-							mysqli_close($con);
-							header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
-						}
-							/*
-							if($result = mysqli_query($con,"SELECT * FROM Administrador where Nomina = '$user' AND Password = '$pass'")){
-								if(mysqli_num_rows($result) == 1){
-									$row = $result->fetch_array(MYSQLI_ASSOC);
-									$_SESSION["user"] = $row["Nomina"];
-									$_SESSION["name"] = $row["Nombre"];
-									$_SESSION["type"] = "admin";
-									mysqli_free_result($result);
-									mysqli_close($link);
-								}
-								else{
-									header("Location: login.php?error=1");//El usuario no está en la base de datos
-								}
-							}
-							else{
-								mysqli_close($con);
-								header("Location: login.php?error=2");///No se pudo la consulta en la base de datos para administradores
-							}
-							*/
-					}
-					else{
-						mysqli_close($con);
-						header("Location: login.php?error=2");//No se pudo la consulta en la base de datos para alumnos
-					}
-				}
 			}
 		}
 		else if($session === "student"){//Falta validar que sea una sesión de estudiante
@@ -120,9 +103,14 @@
 				header("location: login.php?error=1");
 			}
 			else{
-				if($_SESSION["type"] !== "admin"){
+				if($f_SESSION["type"] !== "admin"){
 					header("location: index.php?error=1");
 				}	
+			}
+		}
+		else if($session == "any"){
+			if(!isset($_SESSION["user"])){
+				header("Location: login.php");	
 			}
 		}
 	}

@@ -33,7 +33,7 @@
 			        	Sistema de inscripciones
 			        </div>
 			        
-					<form class="form-signin" action="index.php" method="post">
+					<form class="form-signin" action="crearSesion.php" method="post">
 						<?php
 				        	if(isset($_GET["error"])){
 				        		if($_GET["error"] === "1"){

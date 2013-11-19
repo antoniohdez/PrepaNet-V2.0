@@ -1,7 +1,7 @@
 <?php
 	include "DOMElements/view.php";
 	validarSession("student");
-	if($_SESSION["etapa"] > 1){
+	if($_SESSION["etapa"] >= 1){
 		header("Location: seleccionMaterias.php");
 	}
 ?>

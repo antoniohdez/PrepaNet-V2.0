@@ -1,6 +1,6 @@
 <?php
 	include "DOMElements/view.php";
-	validarSession("index");
+	validarSession("any");
 ?>
 <!DOCTYPE html>
 <html lang="es">
