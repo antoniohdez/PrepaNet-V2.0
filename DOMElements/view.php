@@ -29,9 +29,8 @@
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> '. $_SESSION["name"] .' <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
 		                        	<li><a href="password.php">Cambiar contraseña</a></li>
-		                            <li><a href="logout.php">Cerrar sesión</a></li>
 		                            <li class="divider"></li>
-		                            <li><a href="#">Información</a></li>
+		                            <li><a href="logout.php">Cerrar sesión</a></li>
 		                        </ul>
 		                    </li>
 						</ul>';
@@ -59,7 +58,7 @@
 	}
 
 	function printProgress(){
-		if($_SESSION["type"] == "student")
+		if($_SESSION["type"] == "student"){
 		print '<div class="centerText">
 						<h4 style="margin:0">Estatus de inscripción</h4>
 					</div>
@@ -94,6 +93,7 @@
 						</span>
 						<span>Inscripción Terminada</span>
 					</div>';
+		}
 		if($_SESSION["type"] == "admin")
 		print '<div class="centerText">
 						<h4 style="margin:0">Estatus de inscripción</h4>
@@ -129,7 +129,7 @@
 				</div>
 			</div>
 		';
-		else
+		if($_SESSION["type"] == "admin")
 		print '
 			<div class="content">
 				<div class="centerText">

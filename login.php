@@ -48,6 +48,12 @@
 						        			<strong>Error:</strong> No se pudo consultar el usuario en la base de datos.
 					        			</div>';
 				        		}
+				        		else if($_GET["error"] === "3"){
+				        			print '<div class="alert alert-danger alert-dismissable">
+						        			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						        			<strong>Error:</strong> No es un periodo válido para realizar tu inscripción.
+					        			</div>';
+				        		}
 				        	}
 			        	?>
 			        	<input type="text" name="user" class="form-control firstInput" placeholder="Matrícula" autofocus required>
