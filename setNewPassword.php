@@ -1,5 +1,5 @@
 <?php
 	include "DOMElements/view.php";
 	setNewPassword();
-	header("location: index.php");
+	//header("location: index.php");
 ?>

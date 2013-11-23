@@ -204,17 +204,36 @@
 
 	function setNewPassword(){
 		$con = conectar();
-		$password = md5($_POST['oldPassword']);
-		$newPassword = md5($_POST["newPassword"]);
-		$newPassword2 = md5($_POST["newPassword2"]);
-		if($newPassword == $newPassword2){
-			$result = mysqli_query($con,"SELECT Password FROM Alumno where Matricula = '".$_SESSION["user"]."';");
-			$row = $result->fetch_array(MYSQLI_ASSOC);
-			if($row["Password"] == $password){
-				$result = mysqli_query($con, "UPDATE Alumno SET Password = '$newPassword' WHERE Matricula = '".$_SESSION["user"]."';");
-				
+		if(strlen($_POST['newPassword']) <= 6){
+			header("location: password.php?error=lenpass");
+		}
+		else{
+			$password = md5($_POST['oldPassword']);
+			$newPassword = md5($_POST["newPassword"]);
+			$newPassword2 = md5($_POST["newPassword2"]);
+			if($newPassword == $newPassword2){
+				$result = mysqli_query($con,"SELECT Password FROM Alumno where Matricula = '".$_SESSION["user"]."';");
+				$row = $result->fetch_array(MYSQLI_ASSOC);
+				if($row["Password"] == $password){
+					if($result = mysqli_query($con, "UPDATE Alumno SET Password = '$newPassword' WHERE Matricula = '".$_SESSION["user"]."';")){
+						echo "Jesus es grande";
+						header("location:index.php?pass=changed");
+					}
+					else{
+						echo "Hola Mau";
+						header("location: password.php?error=query");
+						
+					}
+				}
+				else{
+					header("location: password.php?error=wrongPassword");
+				}
+			}
+			else{
+				header("location: password.php?error=noCoincidencePassword");
 			}
 		}
+
 
 	/*	$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
 					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
@@ -222,7 +241,10 @@
 				return $result;
 				}*/
 
+
 		mysql_close($con);
 	}
+
+
 
 ?>
