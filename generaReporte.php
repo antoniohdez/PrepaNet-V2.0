@@ -1,6 +1,12 @@
 <?php
 	include "DOMElements/view.php";
 	validarSession("admin");
-	getReporteInscritas();
+	
+	if($_GET["action"] == "inscritas"){
+		getReporteInscritas();
+	}
+	else if($_GET["action"] == "activos"){
+		print 'lol';
+	}
 
 ?>

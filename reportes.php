@@ -72,7 +72,7 @@
     <script src="js/bootstrap.min.js"></script> 
     <script type="text/javascript">
     	$("#inscripcion").click(function(){
-    		window.location.replace("generaReporte.php");
+    		window.location.replace("generaReporte.php?action=inscritas");
     	});
     </script>
 </body>
