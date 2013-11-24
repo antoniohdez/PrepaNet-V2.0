@@ -204,7 +204,7 @@
 
 	function setNewPassword(){
 		$con = conectar();
-		if(strlen($_POST['newPassword']) <= 6){
+		if(strlen($_POST['newPassword']) < 6){
 			header("location: password.php?error=lenpass");
 		}
 		else{
@@ -245,6 +245,43 @@
 		mysql_close($con);
 	}
 
+	function importCSV(){
+		header('Content-Type: text/html; charset=UTF-8');
+		echo "trololol";
+		$con = conectar();
+		// path where your CSV file is located
+		define('CSV_PATH','');
 
+		// Name of your CSV file
+		$csv_file = CSV_PATH . "DirectorioAlumnos2013.csv";
+		$a = 0;
+		if (($getfile = fopen($csv_file, "r")) !== FALSE) { 
+	        $data = fgetcsv($getfile, 0,",");
+	        echo '<table>';
+	        while (($data = fgetcsv($getfile, 0,",")) !== FALSE) {
+	        	// $num = count($data); 
+		             $result = $data; 
+		             $str = implode(",", $result); 
+		             $slice = explode(",", $str);
+		             $Matricula = $slice[0]; 
+		             $Nombre = utf8_encode($slice[1]);
+		             $ApellidoP = utf8_encode($slice[2]); 
+		             $ApellidoM = utf8_encode($slice[3]);
+		             $Telefono = $slice[7].$slice[8];
+		             $Correo = $slice[9];
+		             $Password = md5($Matricula);
+		             if($Correo == ""){
+		             	$Correo = $slice[10];
+		             }
+
+					// SQL Query to insert data into DataBase
+	            	 mysqli_query($con,"INSERT INTO  Alumno (Matricula ,Nombre ,ApellidoP ,ApellidoM ,Telefono ,PBeca ,Convenio ,Mail ,Password ,Incubadora)
+	             	VALUES ('$Matricula',  '$Nombre',  '$ApellidoP',  '$ApellidoM',  '$Telefono', NULL , NULL ,  '$Correo',  '$Password', NULL);");
+	       }
+	       echo "</table>";
+	    }
+		mysql_close($con);
+
+		}
 
 ?>
