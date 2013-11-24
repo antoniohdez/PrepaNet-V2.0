@@ -220,9 +220,7 @@
 						header("location:index.php?pass=changed");
 					}
 					else{
-						echo "Hola Mau";
 						header("location: password.php?error=query");
-						
 					}
 				}
 				else{
@@ -230,7 +228,7 @@
 				}
 			}
 			else{
-				header("location: password.php?error=noCoincidencePassword");
+				header("location: password.php?error=passMatch");
 			}
 		}
 

@@ -31,23 +31,26 @@
 					<div class="centerText">
 						<h3>Cambio de Contraseña</h3>
 					</div>
+					<?php
+						printErrorGet();
+					?>
 					<form class="form-horizontal" role="form" action="setNewPassword.php" method="post">
 						<div class="form-group">
 						    <label for="oldPassword" class="col-md-3 control-label">Contraseña Actual:</label>
 						    <div class="col-md-9">
-						    	<input type="password" name="oldPassword" class="form-control" id="oldPassword" placeholder="Introduce tu Contraseña actual">
+						    	<input type="password" name="oldPassword" class="form-control" id="oldPassword" required placeholder="Introduce tu Contraseña actual">
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="newPassword" class="col-md-3 control-label">Nueva Contraseña:</label>
 						    <div class="col-md-9">
-						    	<input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="Introduce tu nueva Contraseña">
+						    	<input type="password" name="newPassword" class="form-control" id="newPassword" required placeholder="Introduce tu nueva Contraseña">
 						    </div>
 						</div>
 						<div class="form-group">
 						    <label for="newPassword2" class="col-md-3 control-label">Confirma Contraseña:</label>
 						    <div class="col-md-9">
-						    	<input type="password" name="newPassword2" class="form-control" id="newPassword2" placeholder="Introduce tu nueva Contraseña">
+						    	<input type="password" name="newPassword2" class="form-control" id="newPassword2" required placeholder="Introduce tu nueva Contraseña">
 						    </div>
 						</div>
 						<div class="form-group">

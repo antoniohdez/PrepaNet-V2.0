@@ -231,4 +231,42 @@
 		} 
 	}
 
+	function printErrorGet(){
+		if(isset($_GET["error"])){
+    		if($_GET["error"] === "query"){
+    			print '<div class="alert alert-danger alert-dismissable">
+        				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        				<strong>Error:</strong> El password no se pudo guardar en la base de datos.
+    				</div>';
+    		}
+    		else if($_GET["error"] === "wrongPassword"){
+    			print '<div class="alert alert-danger alert-dismissable">
+        				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        				<strong>Error:</strong> La contraseña actual no es correcto.
+    				</div>';
+			}
+			else if($_GET["error"] === "passMatch"){
+				print '<div class="alert alert-danger alert-dismissable">
+        				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        				<strong>Error:</strong> La nueva contraseña no coincide.
+    				</div>';
+			}
+			else if($_GET["error"] === "lenpass"){
+				print '<div class="alert alert-danger alert-dismissable">
+        				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        				<strong>Error:</strong> La contraseña debe tener al menos 6 caracteres.
+    				</div>';
+			}
+    	}else if(isset($_GET["pass"])){
+    		if($_GET["pass"] === "changed"){
+    			print '<div class="alert alert-success alert-dismissable">
+        				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        				<strong>Éxito:</strong> Tu contraseña ha sido cambiada.
+    				</div>';
+    		}
+    	}
+		
+
+	}
+
 ?>
