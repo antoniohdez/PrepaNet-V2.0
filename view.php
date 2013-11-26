@@ -71,7 +71,7 @@
 							print '-';
 						print '
 						</span>
-						<span>Confirmar información</span>
+						<span>Actualizar información</span>
 					</div>
 					<div class="inscOption">
 						<span class="inscOptionIMG centerText">';
@@ -91,7 +91,7 @@
 							print '-';
 						print '
 						</span>
-						<span>Inscripción Terminada</span>
+						<span>Inscripción Completa</span>
 					</div>';
 		}
 		if($_SESSION["type"] == "admin")
@@ -105,7 +105,7 @@
 					</div>
 					<div class="inscOption">
 						<span class="inscOptionIMG centerText"> - </span>
-						<span>Alumnos nunca inscritos</span>
+						<span>Alumnos no inscritos</span>
 					</div>';
 	}
 

@@ -93,22 +93,22 @@
 		else if($session === "student"){//Falta validar que sea una sesión de estudiante
 			if(!isset($_SESSION["user"])){
 				//header("location: logout.php");
-				header("location: login.php?error=1");
+				header("location: ../login.php?error=1");
 			}
 			else{
 				if($_SESSION["type"] !== "student"){
-					header("location: index.php?error=1");
+					header("location: ../index.php?error=1");
 				}
 			}
 		}
 		else if($session === "admin"){//Falta validar que sea una sesión de administrador
 			if(!isset($_SESSION["user"])){
 				//header("location: logout.php");
-				header("location: login.php?error=1");
+				header("location: ../login.php?error=1");
 			}
 			else{
 				if($_SESSION["type"] !== "admin"){
-					header("location: index.php?error=1");
+					header("location: ../index.php?error=1");
 				}	
 			}
 		}
@@ -223,7 +223,6 @@
 				$row = $result->fetch_array(MYSQLI_ASSOC);
 				if($row["Password"] == $password){
 					if($result = mysqli_query($con, "UPDATE Alumno SET Password = '$newPassword' WHERE Matricula = '".$_SESSION["user"]."';")){
-						echo "Jesus es grande";
 						header("location:index.php?pass=changed");
 					}
 					else{
@@ -238,21 +237,31 @@
 				header("location: password.php?error=passMatch");
 			}
 		}
-
-
-	/*	$query = "UPDATE  prepanet.Alumno SET Password = '$newPassword'  
-					WHERE  alumno.Matricula = '".$_SESSION["user"]."';";
-			if($result = mysqli_query($con, $query)){
-				return $result;
-				}*/
-
-
 		mysql_close($con);
+	}
+
+	function setPasswordEmail($pass, $user){
+		$con = conectar();
+		if($result = mysqli_query($con, "UPDATE Alumno SET Password = '$pass' WHERE Matricula = '$user';")){
+			if($result = mysqli_query($con,"SELECT Nombre, Mail FROM Alumno where Matricula = '$user';")){
+				if(mysqli_num_rows($result) === 1){
+					mysqli_close($link);
+					return $result->fetch_array(MYSQLI_ASSOC);
+				}
+				else{
+					header("location: login.php?passRecovery=userNotFound");
+				}
+			}
+			else{
+				header("location:login.php?passRecovery=failEmail");	
+			}
+		}else{
+			header("location:login.php?passRecovery=fail");
+		}
 	}
 
 	function importCSV(){
 		header('Content-Type: text/html; charset=UTF-8');
-		echo "trololol";
 		$con = conectar();
 		// path where your CSV file is located
 		define('CSV_PATH','');
