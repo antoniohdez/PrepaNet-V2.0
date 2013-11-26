@@ -71,7 +71,6 @@
 								<div id="disponibles" class="listaMaterias">
 									<?php
 										printCursables();
-
 									?>
 								</div>
 							</div>

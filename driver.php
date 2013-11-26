@@ -136,10 +136,10 @@
 
 	function setRegistro(){
 		$con = conectar();
-		$telefono = $_GET["phone"];
-		$correo = $_GET["email"];
+		$telefono = $_POST["phone"];
+		$correo = $_POST["email"];
 		//$Nmaterias = $_GET["num"];
-		$incubadora = $_GET["incubadora"];
+		$incubadora = $_POST["incubadora"];
 		$query = "UPDATE Alumno SET Telefono = $telefono, Mail = '$correo', Incubadora = '$incubadora' WHERE  Matricula = '".$_SESSION["user"]."';";
 		mysqli_query($con, $query);
 		$_SESSION["etapa"] = 1;
@@ -148,8 +148,18 @@
 
 	function getCursables(){
 		$con = conectar();
-		$query = "SELECT * FROM PlanEstudios NATURAL JOIN (SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN (SELECT Clave FROM Cursadas)) A limit 0,10;";
-		//$query = "SELECT Clave, Nombre, Unidades, Cuatrimestre FROM Materia NATURAL JOIN PlanEStudios order by Cuatrimestre asc;";
+		//$query = "SELECT * FROM PlanEstudios NATURAL JOIN (SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN (SELECT Clave FROM Cursadas)) A limit 0,10;";
+		$query = 	"SELECT * FROM PlanEstudios
+					NATURAL JOIN
+					/* Genera las cursables que tienen una materia de requisto */
+					(SELECT Clave, Nombre FROM Materia Where Clave IN 
+						(SELECT Clave FROM Materia_Requisito WHERE Requisito IN 
+							(SELECT Clave FROM Cursadas WHERE Matricula = '".$_SESSION['user']."')) 
+					UNION 
+					/* Genera las cursables que no tienen materia de requisito */
+					(SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN 
+						(SELECT Clave FROM Materia_Requisito) AND Clave NOT IN 
+							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A;";
 		if($result = mysqli_query($con, $query)){
 			return $result;
 		}

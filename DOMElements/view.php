@@ -148,7 +148,7 @@
 	function getFormRegistro(){
 		$row = getDatosRegistro();
 		print '
-		<form class="form-horizontal" role="form" action="SeleccionMaterias.php" method="get">
+		<form class="form-horizontal" role="form" action="SeleccionMaterias.php" method="post">
 		  	<div class="form-group">
 		    	<label for="name" class="col-md-3 control-label">Nombre:</label>
 		    	<div class="col-md-9">
