@@ -148,18 +148,15 @@
 
 	function getCursables(){
 		$con = conectar();
-		//$query = "SELECT * FROM PlanEstudios NATURAL JOIN (SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN (SELECT Clave FROM Cursadas)) A limit 0,10;";
 		$query = 	"SELECT * FROM PlanEstudios
 					NATURAL JOIN
-					/* Genera las cursables que tienen una materia de requisto */
 					(SELECT Clave, Nombre FROM Materia Where Clave IN 
 						(SELECT Clave FROM Materia_Requisito WHERE Requisito IN 
 							(SELECT Clave FROM Cursadas WHERE Matricula = '".$_SESSION['user']."')) 
 					UNION 
-					/* Genera las cursables que no tienen materia de requisito */
 					(SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN 
 						(SELECT Clave FROM Materia_Requisito) AND Clave NOT IN 
-							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A;";
+							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A ORDER BY Cuatrimestre ASC;";
 		if($result = mysqli_query($con, $query)){
 			return $result;
 		}

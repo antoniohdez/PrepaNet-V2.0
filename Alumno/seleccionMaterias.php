@@ -1,5 +1,5 @@
 <?php
-	include "DOMElements/view.php";
+	include "../view.php";
 	validarSession("student");
 	if($_SESSION["etapa"] == 3){
 		header("location: inscripcionCompleta.php");
@@ -19,13 +19,13 @@
         PrepaNet - Inscripciones
     </title>
 	<!-- Bootstrap core CSS -->
-	<link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/inscripcion.css" rel="stylesheet">
+	<link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/inscripcion.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
+		<script src="../js/html5shiv.js"></script>
+		<script src="../js/respond.min.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -83,8 +83,8 @@
 	<?php
 		printFooter();
 	?>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script>
 	//Script para hacer control de las materias seleccionadas para inscripción
 	$(document).ready(function(){

@@ -1,4 +1,4 @@
 <?php
-	include "DOMElements/view.php";
+	include "view.php";
 	crearSession();
 ?>

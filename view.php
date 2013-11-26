@@ -28,9 +28,9 @@
 		  					<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> '. $_SESSION["name"] .' <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
-		                        	<li><a href="password.php">Cambiar contraseña</a></li>
+		                        	<li><a href="../password.php">Cambiar contraseña</a></li>
 		                            <li class="divider"></li>
-		                            <li><a href="logout.php">Cerrar sesión</a></li>
+		                            <li><a href="../logout.php">Cerrar sesión</a></li>
 		                        </ul>
 		                    </li>
 						</ul>';
@@ -66,7 +66,7 @@
 					<div class="inscOption">
 						<span class="inscOptionIMG centerText">';
 						if($_SESSION["etapa"] >= 1)
-							print '<img src="img/32px-Green_check.png">';
+							print '<img src="../img/32px-Green_check.png">';
 						else
 							print '-';
 						print '
@@ -76,7 +76,7 @@
 					<div class="inscOption">
 						<span class="inscOptionIMG centerText">';
 						if($_SESSION["etapa"] >= 2)
-							print '<img src="img/32px-Green_check.png">';
+							print '<img src="../img/32px-Green_check.png">';
 						else
 							print '-';
 						print '
@@ -86,7 +86,7 @@
 					<div class="inscOption">
 						<span class="inscOptionIMG centerText">';
 						if($_SESSION["etapa"] >= 2)
-							print '<img src="img/32px-Green_check.png">';
+							print '<img src="../img/32px-Green_check.png">';
 						else
 							print '-';
 						print '

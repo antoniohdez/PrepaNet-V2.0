@@ -1,6 +1,5 @@
 <?php
-	
-	include "DOMElements/view.php";
+	include "../view.php";
 	validarSession("admin");
 ?>
 <!DOCTYPE html>
@@ -13,13 +12,13 @@
         PrepaNet - Inscripciones
     </title>
 	<!-- Bootstrap core CSS -->
-	<link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+	<link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
+		<script src="../js/html5shiv.js"></script>
+		<script src="../js/respond.min.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -31,32 +30,36 @@
 			<div class="col-md-offset-2 col-md-8">
 				<div class="content">
 					<div class="centerText">
-						<h3>Alumnos</h3>
+						<h3>Generar reportes</h3>
 					</div>
 					<div class="row">
 						<div class="col-md-3 centerText">
 							<div class="option">
-								<div class="centradoVertical">Inscribir Alumno</div>
+								<div id="inscripcion" class="centradoVertical">Inscripción</div>
 							</div>
 						</div>
 						<div class="col-md-3 centerText">
 							<div class="option">
-								<div class="centradoVertical">Agregar</div>
+								<div class="centradoVertical">Alumno</div>
 							</div>
 						</div>
 						<div class="col-md-3 centerText">
 							<div class="option">
-								<div class="centradoVertical">Actualizar información</div>
+								<div class="centradoVertical">Alumnos activos</div>
 							</div>
 						</div>
 						<div class="col-md-3 centerText">
 							<div class="option">
-								<div class="centradoVertical">Eliminar</div>
+								<div class="centradoVertical">Cursadas por alumno</div>
 							</div>
 						</div>
 					</div>
+					<div class="centerText">
+
+					</div>
 				</div>
-			</div>
+				
+    		</div>
     	</div>
 	</div>
 
@@ -64,7 +67,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script> 
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script> 
+    <script type="text/javascript">
+    	$("#inscripcion").click(function(){
+    		window.location.replace("generaReporte.php?action=inscritas");
+    	});
+    </script>
 </body>
 </html>

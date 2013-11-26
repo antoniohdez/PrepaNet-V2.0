@@ -1,5 +1,5 @@
 <?php
-	include "DOMElements/view.php";
+	include "view.php";
 	validarSession("login");
 ?>
 <!DOCTYPE html>
