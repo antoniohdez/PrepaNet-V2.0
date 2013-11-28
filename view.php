@@ -5,16 +5,16 @@
 		print '
 			<header class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<div class="navbar-header">';
+						if(isset($_SESSION["user"]))
+							print '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="index.php">PrepaNet</a>
+						</button>';
+						print '<a class="navbar-brand" href="index.php">PrepaNet</a>
 					</div>
 					<div class="collapse navbar-collapse">';
-						
 						if($_SESSION["type"] == "admin")
 		                print '<ul class="nav navbar-nav">
 							<!--<li class="active"><a href="reportes.php">Reportes</a></li>-->
@@ -37,8 +37,7 @@
 						print ' 
 					</div><!--/.nav-collapse -->
 				</div>
-			</header>
-		';
+			</header>';
 	}
 
 	function printFooter(){
@@ -60,53 +59,53 @@
 	function printProgress(){
 		if($_SESSION["type"] == "student"){
 		print '<div class="centerText">
-						<h4 style="margin:0">Estatus de inscripción</h4>
-					</div>
-					<hr>
-					<div class="inscOption">
-						<span class="inscOptionIMG centerText">';
-						if($_SESSION["etapa"] >= 1)
-							print '<img src="../img/32px-Green_check.png">';
-						else
-							print '-';
-						print '
-						</span>
-						<span>Actualizar información</span>
-					</div>
-					<div class="inscOption">
-						<span class="inscOptionIMG centerText">';
-						if($_SESSION["etapa"] >= 2)
-							print '<img src="../img/32px-Green_check.png">';
-						else
-							print '-';
-						print '
-						</span>
-						<span>Selección de materias</span>
-					</div>
-					<div class="inscOption">
-						<span class="inscOptionIMG centerText">';
-						if($_SESSION["etapa"] >= 2)
-							print '<img src="../img/32px-Green_check.png">';
-						else
-							print '-';
-						print '
-						</span>
-						<span>Inscripción Completa</span>
-					</div>';
+					<h4 style="margin:0">Estatus de inscripción</h4>
+				</div>
+				<hr>
+				<div class="inscOption">
+					<span class="inscOptionIMG centerText">';
+					if($_SESSION["etapa"] >= 1)
+						print '<img src="../img/32px-Green_check.png">';
+					else
+						print '-';
+					print '
+					</span>
+					<span>Actualizar información</span>
+				</div>
+				<div class="inscOption">
+					<span class="inscOptionIMG centerText">';
+					if($_SESSION["etapa"] >= 2)
+						print '<img src="../img/32px-Green_check.png">';
+					else
+						print '-';
+					print '
+					</span>
+					<span>Selección de materias</span>
+				</div>
+				<div class="inscOption">
+					<span class="inscOptionIMG centerText">';
+					if($_SESSION["etapa"] >= 2)
+						print '<img src="../img/32px-Green_check.png">';
+					else
+						print '-';
+					print '
+					</span>
+					<span>Inscripción Completa</span>
+				</div>';
 		}
 		if($_SESSION["type"] == "admin")
 		print '<div class="centerText">
-						<h4 style="margin:0">Estatus de inscripción</h4>
-					</div>
-					<hr>
-					<div class="inscOption">
-						<span class="inscOptionIMG centerText"> - </span>
-						<span>Alumnos inscritos</span>
-					</div>
-					<div class="inscOption">
-						<span class="inscOptionIMG centerText"> - </span>
-						<span>Alumnos no inscritos</span>
-					</div>';
+					<h4 style="margin:0">Estatus de inscripción</h4>
+				</div>
+				<hr>
+				<div class="inscOption">
+					<span class="inscOptionIMG centerText"> - </span>
+					<span>Alumnos inscritos</span>
+				</div>
+				<div class="inscOption">
+					<span class="inscOptionIMG centerText"> - </span>
+					<span>Alumnos no inscritos</span>
+				</div>';
 	}
 
 	function printIndex(){//Falta validar el tipo de sesión al imprimir el index
