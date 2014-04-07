@@ -15,24 +15,10 @@
 						print '<a class="navbar-brand" href="index.php">PrepaNet</a>
 					</div>
 					<div class="collapse navbar-collapse">';
-						if($_SESSION["type"] == "admin")
-		                print '<ul class="nav navbar-nav">
-							<!--<li class="active"><a href="reportes.php">Reportes</a></li>-->
-							<li><a href="reportes.php">Reportes</a></li>
-							<li><a href="alumnos.php">Alumnos</a></li>
-							<li><a href="materias.php">Materias</a></li>
-							<li><a href="administrador.php">Administrar Cuentas</a></li>
-						</ul>';
 						if($_SESSION["type"] == "admin" || $_SESSION["type"] == "student")//Posiblemente este if no es necesario
 		                print '<ul class="nav navbar-nav navbar-right">
-		  					<li class="dropdown">
-		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> '. $_SESSION["name"] .' <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-		                        	<li><a href="../password.php">Cambiar contraseña</a></li>
-		                            <li class="divider"></li>
-		                            <li><a href="../logout.php">Cerrar sesión</a></li>
-		                        </ul>
-		                    </li>
+		                	<li><a href="../password.php">Cambiar contraseña</a></li>
+                            <li><a href="../logout.php">Salir</a></li>
 						</ul>';
 						print ' 
 					</div><!--/.nav-collapse -->
@@ -93,19 +79,6 @@
 					<span>Inscripción Completa</span>
 				</div>';
 		}
-		if($_SESSION["type"] == "admin")
-		print '<div class="centerText">
-					<h4 style="margin:0">Estatus de inscripción</h4>
-				</div>
-				<hr>
-				<div class="inscOption">
-					<span class="inscOptionIMG centerText"> - </span>
-					<span>Alumnos inscritos</span>
-				</div>
-				<div class="inscOption">
-					<span class="inscOptionIMG centerText"> - </span>
-					<span>Alumnos no inscritos</span>
-				</div>';
 	}
 
 	function printIndex(){//Falta validar el tipo de sesión al imprimir el index

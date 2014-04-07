@@ -3,7 +3,7 @@
 	session_start();
 
 	function conectar(){//Genera la conexión a la base de datos
-		$con=mysqli_connect("localhost","root","","prepanet2");
+		$con=mysqli_connect("localhost","root","123456","prepanet2");
 		if (mysqli_connect_errno())
 	  	{
 	  		print "Falló la conexión a la base de datos: " . mysqli_connect_error();
@@ -96,7 +96,7 @@
 				header("location: ../login.php?error=1");
 			}
 			else{
-				if($_SESSION["type"] !== "student"){
+				if($_SESSION["type"] != "student"){
 					header("location: ../index.php?error=1");
 				}
 			}
@@ -107,12 +107,12 @@
 				header("location: ../login.php?error=1");
 			}
 			else{
-				if($_SESSION["type"] !== "admin"){
+				if($_SESSION["type"] != "admin"){
 					header("location: ../index.php?error=1");
 				}	
 			}
 		}
-		else if($session == "any"){
+		else if($session === "any"){
 			if(!isset($_SESSION["user"])){
 				header("Location: login.php");	
 			}
@@ -148,6 +148,7 @@
 
 	function getCursables(){
 		$con = conectar();
+		
 		$query = 	"SELECT * FROM PlanEstudios
 					NATURAL JOIN
 					(SELECT Clave, Nombre FROM Materia Where Clave IN 
@@ -156,7 +157,9 @@
 					UNION 
 					(SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN 
 						(SELECT Clave FROM Materia_Requisito) AND Clave NOT IN 
-							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A ORDER BY Cuatrimestre ASC;";
+							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A WHERE Clave NOT IN (SELECT Clave FROM Cursadas)ORDER BY Cuatrimestre ASC;";
+
+				
 		if($result = mysqli_query($con, $query)){
 			return $result;
 		}
@@ -179,34 +182,107 @@
 
 	function getReporteInscritas(){
 		$con = conectar();
-		$result = mysqli_query($con, "SELECT DISTINCT Matricula, Clave FROM cursadas;");
-		$tbHtml = "<table>
-		           	   <header>
-		                   <tr>
-		                       <th>Matricula</th>
-		                       <th>Materias</th>
-		                   </tr>
-		               </header>";
+		$result = mysqli_query($con, "SELECT DISTINCT Matricula FROM Cursadas;");
 		while($row = mysqli_fetch_array($result)){
-			$tbHtml .= '<tr><td>'.$row[0].'</td>';
+			echo $row[0].",";
 			
-			$result = mysqli_query($con, "SELECT Clave FROM cursadas WHERE Matricula='".$row[0]."';");
-			while($materias = mysqli_fetch_array($result)){
-				$tbHtml .= '<td>'.$materias[0].'</td>';
+			$result2 = mysqli_query($con, "SELECT Clave FROM Cursadas WHERE Matricula='".$row[0]."';");
+			while($materias = mysqli_fetch_array($result2)){
+				echo $materias[0].",";
 			}
-			$tbHtml .= '</tr>';
+			echo "\n";
 		}
-		$tbHtml .= '</html>';
-		$paises = array(0=>'México','Venezuela','Colombia','Belice','Guatemala',
-	                 'Perú','Brasil','Panamá');
-
+		//$tbHtml .= '</tbody>
+		//			</table>';
 		
 		header("Content-type: application/octet-stream");
-		header("Content-Disposition: attachment; filename=reporteInscritas.xls");
+		header("Content-Disposition: attachment; filename=reporteInscritas.csv");
 		header("Pragma: no-cache");
 		header("Expires: 0");
-		print $tbHtml;
 		
+	}
+
+	function getReporteAlumnos(){
+		$con = conectar();
+		header('Content-Encoding: UTF-8');
+		header('Content-type: text/csv; charset=UTF-8');
+		header("Content-Disposition: attachment; filename=reporteAlumnos.csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		$result = mysqli_query($con, "SELECT * FROM Alumno;");
+		while($row = mysqli_fetch_array($result)){
+			echo utf8_decode($row[0].",".$row[1].",".$row[2].",".$row[3].",".$row[4].",".$row[5].",".$row[6].",".$row[7].",".$row[9]);
+			echo "\n";
+		}
+	}
+
+	function getReporteHistorial($matricula){
+		$con = conectar();
+		header('Content-type: text/csv');
+		header("Content-Disposition: attachment; filename=".$matricula.".csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		$result = mysqli_query($con, "SELECT * FROM Cursadas WHERE Matricula = '$matricula'");
+		while($row = mysqli_fetch_array($result)){
+			echo $row[0].",".$row[1].",".$row[2];
+			echo "\n";
+		}
+	}
+
+	function getDatosAlumno($matricula){//Regresa datos para el formulario del registro administrativo
+		$con = conectar();
+		if($result = mysqli_query($con,"SELECT * FROM Alumno where Matricula = '$matricula'")){
+			if(mysqli_num_rows($result) === 1){
+				mysqli_close($link);
+				return $result->fetch_array(MYSQLI_ASSOC);
+			}
+		}
+	}
+
+	function agregarAlumno(){
+		$Matricula = $_POST["matricula"];
+		$Password = md5($Matricula);
+		$Nombre = $_POST["nombre"];
+		$ApellidoP = $_POST["apellidoP"];
+		$ApellidoM = $_POST["apellidoM"];
+		$Telefono = $_POST["telefono"];
+		$Beca = $_POST["beca"];
+		$Convenio = $_POST["convenio"];
+		$Correo = $_POST["email"];
+		$Incubadora = $_POST["incubadora"];
+		$con = conectar();
+		mysqli_query($con,"INSERT INTO  Alumno (Matricula ,Nombre ,ApellidoP ,ApellidoM ,Telefono ,PBeca ,Convenio ,Mail ,Password ,Incubadora)
+	             	VALUES ('$Matricula',  '$Nombre',  '$ApellidoP',  '$ApellidoM',  '$Telefono', '$Beca' , '$Convenio' ,  '$Correo',  '$Password', '$Incubadora')");
+		mysqli_close($con);
+	}
+
+	function editarAlumno($matricula){
+		$con = conectar();
+		$Nombre = $_POST["nombre"];
+		$ApellidoP = $_POST["apellidoP"];
+		$ApellidoM = $_POST["apellidoM"];
+		$Telefono = $_POST["telefono"];
+		$Beca = $_POST["beca"];
+		$Convenio = $_POST["convenio"];
+		$Correo = $_POST["email"];
+		$Incubadora = $_POST["incubadora"];
+		$query = "UPDATE Alumno SET Nombre = '$Nombre',
+									ApellidoP = '$ApellidoP', 
+									ApellidoM = '$ApellidoM', 
+									Telefono = '$Telefono', 
+									PBeca = '$Beca', 
+									Convenio = '$Convenio', 
+									Mail = '$Correo', 
+									Incubadora = '$Incubadora' 
+									WHERE  Matricula = '$matricula'";
+		mysqli_query($con, $query);
+		mysql_close($con);
+	}
+
+	function eliminarAlumno($matricula){
+		$con = conectar();
+		$result = mysqli_query($con, "DELETE FROM Alumno WHERE Matricula = '$matricula'");
+		mysqli_close($con);
 	}
 
 	function setNewPassword(){
@@ -289,7 +365,7 @@
 		             }
 
 					// SQL Query to insert data into DataBase
-	            	 mysqli_query($con,"INSERT INTO  Alumno (Matricula ,Nombre ,ApellidoP ,ApellidoM ,Telefono ,PBeca ,Convenio ,Mail ,Password ,Incubadora)
+	            	mysqli_query($con,"INSERT INTO  Alumno (Matricula ,Nombre ,ApellidoP ,ApellidoM ,Telefono ,PBeca ,Convenio ,Mail ,Password ,Incubadora)
 	             	VALUES ('$Matricula',  '$Nombre',  '$ApellidoP',  '$ApellidoM',  '$Telefono', NULL , NULL ,  '$Correo',  '$Password', NULL);");
 	       }
 	       echo "</table>";
