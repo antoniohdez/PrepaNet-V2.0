@@ -157,7 +157,7 @@
 					UNION 
 					(SELECT Clave, Nombre FROM Materia WHERE Clave NOT IN 
 						(SELECT Clave FROM Materia_Requisito) AND Clave NOT IN 
-							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A WHERE Clave NOT IN (SELECT Clave FROM Cursadas)ORDER BY Cuatrimestre ASC;";
+							(SELECT Clave FROM Cursadas WHERE Matricula =  '".$_SESSION['user']."'))) A WHERE Clave NOT IN (SELECT Clave FROM Cursadas WHERE Matricula = '".$_SESSION['user']."') ORDER BY Cuatrimestre ASC;";
 
 				
 		if($result = mysqli_query($con, $query)){
